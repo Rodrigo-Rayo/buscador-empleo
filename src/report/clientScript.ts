@@ -11,7 +11,7 @@ export const CLIENT_SCRIPT = /* js */ `
   var meta = JSON.parse(document.getElementById('meta-data').textContent);
   var STORAGE_KEY = meta.storageKey;
   var latestRun = offers.length ? offers[0].fechaGuardado : '';
-  var filters = { q: '', loc: '', company: '', portal: '', view: 'pendientes', onlyMatch: false };
+  var filters = { q: '', loc: '', company: '', portal: '', view: 'pendientes', onlyMatch: Boolean(meta.onlyMatchByDefault) };
   var storageOk = true;
   var statuses = loadStatuses();
   var toastTimer = null;
@@ -259,6 +259,7 @@ export const CLIENT_SCRIPT = /* js */ `
   $('updated').textContent = 'Actualizado ' + new Intl.DateTimeFormat('es-ES', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(meta.generatedAt));
   $('q').addEventListener('input', function (e) { filters.q = norm(e.target.value.trim()); renderList(); });
   $('company').addEventListener('change', function (e) { filters.company = e.target.value; renderList(); });
+  $('only-match').checked = filters.onlyMatch;
   $('only-match').addEventListener('change', function (e) { filters.onlyMatch = e.target.checked; renderAll(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === '/' && document.activeElement !== $('q')) { e.preventDefault(); $('q').focus(); }

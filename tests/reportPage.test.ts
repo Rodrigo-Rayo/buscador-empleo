@@ -164,6 +164,20 @@ describe('página de ofertas', () => {
     expect(titles()).toEqual(['Desarrollador .NET']);
   });
 
+  it('perfil con onlyMatchByDefault (Gabi): el filtro viene marcado y se puede desmarcar', () => {
+    const { titles, doc, dom } = openPage({
+      profile: 'gabi',
+      offers: [offer('30', 'Trabajador/a social', 'Madrid'), offer('31', 'Logopeda', 'Madrid')],
+    });
+    const checkbox = doc.getElementById('only-match') as HTMLInputElement;
+    expect(checkbox.checked).toBe(true);
+    expect(titles()).toEqual(['Trabajador/a social']);
+
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new dom.window.Event('change'));
+    expect(titles()).toEqual(['Trabajador/a social', 'Logopeda']);
+  });
+
   it('perfil de psicología: etiqueta las ofertas según el título', () => {
     const { row } = openPage({
       profile: 'psicologia',
@@ -188,7 +202,10 @@ describe('página de ofertas', () => {
   });
 
   it('las marcas de una persona no afectan a otra', () => {
-    const { titles } = openPage({ profile: 'gabi', offers: OFFERS });
+    const { titles, doc, dom } = openPage({ profile: 'gabi', offers: OFFERS });
+    const checkbox = doc.getElementById('only-match') as HTMLInputElement;
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new dom.window.Event('change'));
     expect(titles()).toHaveLength(3);
   });
 

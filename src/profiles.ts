@@ -10,6 +10,8 @@ export interface ReportPage {
   readonly emphasis: string;
   /** Texto del filtro que muestra solo las ofertas con encaje positivo */
   readonly matchLabel: string;
+  /** El filtro anterior viene marcado al abrir la página (se puede desmarcar para ver el resto) */
+  readonly onlyMatchByDefault?: boolean;
   /** Reglas de encaje sobre el título (en minúsculas y sin acentos): ordenan y etiquetan las ofertas */
   readonly scoring: readonly ScoringRule[];
 }
@@ -202,6 +204,8 @@ const TRABAJO_SOCIAL: SearchProfile = {
     heading: 'Ofertas',
     emphasis: 'trabajo social · igualdad · RRHH',
     matchLabel: 'Solo las que encajan con su perfil',
+    // Las búsquedas de pocos días traen mucho relleno de otras profesiones: de entrada se ve solo lo que encaja
+    onlyMatchByDefault: true,
     scoring: [
       { label: 'Trabajo social', pattern: 'trabajador.{0,3} social|trabajadora social|trabajo social', points: 3 },
       { label: 'Igualdad / violencia de género', pattern: 'igualdad|violencia|\\bvg\\b|mujer', points: 3 },
@@ -209,8 +213,9 @@ const TRABAJO_SOCIAL: SearchProfile = {
       { label: 'Inserción sociolaboral', pattern: 'insercion|sociolaboral|orientador|prospeccion|empleabilidad', points: 2 },
       { label: 'RRHH / selección', pattern: 'recursos humanos|rrhh|seleccion|administracion de personal|relaciones laborales', points: 2 },
       // Sin etiqueta: gestión de proyectos sociales sube un poco
-      { label: '', pattern: 'proyecto|programa', points: 1 },
-      { label: 'Guadalajara o cerca', pattern: 'guadalajara|alcala|azuqueca|torrejon|coslada', points: 1 },
+      { label: '', pattern: '\\bproyectos?\\b|\\bprogramas?\\b', points: 1 },
+      // 0 puntos: solo avisa de la zona; si sumara, cualquier oferta de Torrejón o Alcalá pasaría el filtro
+      { label: 'Guadalajara o cerca', pattern: 'guadalajara|alcala|azuqueca|torrejon|coslada', points: 0 },
       {
         label: 'Otra profesión',
         pattern:

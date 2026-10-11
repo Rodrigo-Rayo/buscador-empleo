@@ -52,6 +52,7 @@ export function renderReport(offers: readonly JobOffer[], generatedAt: Date, pro
   const meta = {
     generatedAt: generatedAt.toISOString(),
     matchLabel: page.matchLabel,
+    onlyMatchByDefault: page.onlyMatchByDefault ?? false,
     storageKey: `${STORAGE_PREFIX}:${profile.id}`,
     legacyStorageKey: STORAGE_PREFIX,
   };
