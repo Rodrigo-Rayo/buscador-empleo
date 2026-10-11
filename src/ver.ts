@@ -12,6 +12,9 @@ function openCommand(file: string): [string, string[]] {
   return ['xdg-open', [file]];
 }
 
+/** Solo regenera las páginas, sin abrirlas (lo usa GitHub Actions para republicar sin gastar créditos) */
+const NO_OPEN_FLAG = '--sin-abrir';
+
 /**
  * Regenera todas las páginas a partir de los JSON guardados (sin gastar créditos), para que la barra de navegación
  * entre personas siempre funcione, y abre en el navegador las pedidas (sin argumentos: las de perfiles activos).
@@ -20,7 +23,9 @@ async function main(): Promise<void> {
   for (const profile of PROFILES) {
     await writeReport(profile.reportFile, await loadOffers(profile.outputFile), profile);
   }
-  for (const profile of selectProfiles(process.argv.slice(2), { activeOnly: true })) {
+  const args = process.argv.slice(2);
+  if (args.includes(NO_OPEN_FLAG)) return;
+  for (const profile of selectProfiles(args, { activeOnly: true })) {
     const reportFile = resolve(profile.reportFile);
     console.log(`📄 [${profile.id}] → ${reportFile}`);
     const [command, args] = openCommand(reportFile);

@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: '0 5 * * 1,3,5'
   workflow_dispatch:
+    inputs:
+      buscar:
+        description: 'Buscar ofertas nuevas (gasta ~27 créditos). Desmarcado: solo regenera la página'
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -35,6 +40,7 @@ jobs:
       - run: npm ci
 
       - name: Buscar ofertas nuevas
+        if: github.event_name == 'schedule' || inputs.buscar
         run: npm run buscar:gabi
         env:
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
@@ -47,6 +53,10 @@ jobs:
           git add ofertas-gabi.json estadisticas.json
           git diff --cached --quiet || git commit -m "chore: ofertas de Gabi del $(date +%F)"
           git push
+
+      - name: Regenerar la página sin buscar
+        if: github.event_name == 'workflow_dispatch' && !inputs.buscar
+        run: npm run build && node dist/ver.js --sin-abrir
 
       - name: Preparar la página
         run: mkdir _site && cp ofertas-gabi.html _site/index.html
