@@ -110,9 +110,22 @@ footer { margin-top: 64px; font-size: 11px; color: var(--ink-faint); border-top:
 kbd { font: inherit; border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; }
 
 @media (max-width: 640px) {
-  header.masthead { padding-top: 32px; }
-  .search { flex-direction: column; }
-  .search select { max-width: none; }
+  header.masthead { padding: 20px 0 18px; }
+  .kicker { gap: 2px 12px; font-size: 10px; }
+  h1 { font-size: clamp(2.2rem, 1.4rem + 5vw, 3rem); }
+  .stats { gap: 12px 24px; margin-top: 16px; }
+  .stat b { font-size: 1.6rem; }
+  /* Fija arriba ocupaba casi toda la pantalla y tapaba las ofertas: en el móvil se va con el scroll */
+  .controls { position: static; padding-top: 12px; }
+  .search { gap: 8px; }
+  .search input, .search select { padding: 8px 10px; }
+  .search select { max-width: 40%; }
+  /* Cada grupo de filtros en una sola línea que se desliza en horizontal */
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-top: 8px; padding: 0 32px 2px 0;
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; white-space: nowrap; }
+  section.day { margin-top: 28px; }
   .job { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
