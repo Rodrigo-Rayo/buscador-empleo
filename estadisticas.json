@@ -1,0 +1,774 @@
+{
+  "psicologia": {
+    "linkedin | psicólogo": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 12,
+      "nuevas": 10
+    },
+    "linkedin | psicóloga": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 16,
+      "nuevas": 10
+    },
+    "linkedin | sexología": {
+      "busquedas": 3,
+      "resultados": 10,
+      "exclusivas": 4,
+      "nuevas": 1
+    },
+    "linkedin | sexualidad": {
+      "busquedas": 3,
+      "resultados": 3,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "linkedin | terapia sexual": {
+      "busquedas": 3,
+      "resultados": 21,
+      "exclusivas": 13,
+      "nuevas": 4
+    },
+    "linkedin | terapia de pareja": {
+      "busquedas": 3,
+      "resultados": 16,
+      "exclusivas": 8,
+      "nuevas": 2
+    },
+    "linkedin | violencia sexual": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 11,
+      "nuevas": 4
+    },
+    "linkedin | violencia de género": {
+      "busquedas": 3,
+      "resultados": 26,
+      "exclusivas": 12,
+      "nuevas": 5
+    },
+    "infojobs | psicólogo": {
+      "busquedas": 3,
+      "resultados": 20,
+      "exclusivas": 9,
+      "nuevas": 7
+    },
+    "infojobs | psicóloga": {
+      "busquedas": 3,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "infojobs | sexología": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | sexualidad": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | terapia sexual": {
+      "busquedas": 3,
+      "resultados": 5,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "infojobs | terapia de pareja": {
+      "busquedas": 3,
+      "resultados": 2,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | violencia sexual": {
+      "busquedas": 3,
+      "resultados": 2,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | violencia de género": {
+      "busquedas": 3,
+      "resultados": 22,
+      "exclusivas": 17,
+      "nuevas": 7
+    },
+    "indeed | psicólogo": {
+      "busquedas": 3,
+      "resultados": 27,
+      "exclusivas": 23,
+      "nuevas": 15
+    },
+    "indeed | psicóloga": {
+      "busquedas": 3,
+      "resultados": 15,
+      "exclusivas": 11,
+      "nuevas": 13
+    },
+    "indeed | sexología": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | sexualidad": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | terapia sexual": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | terapia de pareja": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | violencia sexual": {
+      "busquedas": 3,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "indeed | violencia de género": {
+      "busquedas": 3,
+      "resultados": 12,
+      "exclusivas": 7,
+      "nuevas": 6
+    },
+    "hacesfalta | psicólogo": {
+      "busquedas": 3,
+      "resultados": 18,
+      "exclusivas": 11,
+      "nuevas": 5
+    },
+    "hacesfalta | psicóloga": {
+      "busquedas": 3,
+      "resultados": 7,
+      "exclusivas": 2,
+      "nuevas": 4
+    },
+    "hacesfalta | sexología": {
+      "busquedas": 3,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "hacesfalta | sexualidad": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "hacesfalta | terapia sexual": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "hacesfalta | terapia de pareja": {
+      "busquedas": 3,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "hacesfalta | violencia sexual": {
+      "busquedas": 3,
+      "resultados": 1,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "hacesfalta | violencia de género": {
+      "busquedas": 3,
+      "resultados": 23,
+      "exclusivas": 18,
+      "nuevas": 11
+    }
+  },
+  "gabi": {
+    "linkedin | trabajador social": {
+      "busquedas": 4,
+      "resultados": 40,
+      "exclusivas": 19,
+      "nuevas": 16
+    },
+    "linkedin | trabajadora social": {
+      "busquedas": 2,
+      "resultados": 3,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "linkedin | trabajo social": {
+      "busquedas": 4,
+      "resultados": 39,
+      "exclusivas": 20,
+      "nuevas": 8
+    },
+    "infojobs | trabajador social": {
+      "busquedas": 4,
+      "resultados": 24,
+      "exclusivas": 19,
+      "nuevas": 6
+    },
+    "infojobs | trabajadora social": {
+      "busquedas": 2,
+      "resultados": 2,
+      "exclusivas": 1,
+      "nuevas": 0
+    },
+    "infojobs | trabajo social": {
+      "busquedas": 4,
+      "resultados": 17,
+      "exclusivas": 10,
+      "nuevas": 6
+    },
+    "indeed | trabajador social": {
+      "busquedas": 4,
+      "resultados": 20,
+      "exclusivas": 15,
+      "nuevas": 12
+    },
+    "indeed | trabajadora social": {
+      "busquedas": 4,
+      "resultados": 38,
+      "exclusivas": 30,
+      "nuevas": 5
+    },
+    "indeed | trabajo social": {
+      "busquedas": 4,
+      "resultados": 20,
+      "exclusivas": 19,
+      "nuevas": 3
+    },
+    "hacesfalta | trabajador social": {
+      "busquedas": 2,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "hacesfalta | trabajadora social": {
+      "busquedas": 4,
+      "resultados": 17,
+      "exclusivas": 6,
+      "nuevas": 5
+    },
+    "hacesfalta | trabajo social": {
+      "busquedas": 4,
+      "resultados": 33,
+      "exclusivas": 22,
+      "nuevas": 8
+    },
+    "linkedin | violencia de género": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 17,
+      "nuevas": 10
+    },
+    "infojobs | violencia de género": {
+      "busquedas": 2,
+      "resultados": 18,
+      "exclusivas": 16,
+      "nuevas": 9
+    },
+    "indeed | violencia de género": {
+      "busquedas": 2,
+      "resultados": 14,
+      "exclusivas": 12,
+      "nuevas": 6
+    },
+    "hacesfalta | violencia de género": {
+      "busquedas": 2,
+      "resultados": 13,
+      "exclusivas": 7,
+      "nuevas": 5
+    },
+    "infojobs | protección internacional": {
+      "busquedas": 2,
+      "resultados": 12,
+      "exclusivas": 12,
+      "nuevas": 6
+    },
+    "indeed | protección internacional": {
+      "busquedas": 2,
+      "resultados": 4,
+      "exclusivas": 4,
+      "nuevas": 2
+    },
+    "hacesfalta | protección internacional": {
+      "busquedas": 2,
+      "resultados": 12,
+      "exclusivas": 6,
+      "nuevas": 3
+    },
+    "infojobs | inserción sociolaboral": {
+      "busquedas": 2,
+      "resultados": 10,
+      "exclusivas": 10,
+      "nuevas": 5
+    },
+    "hacesfalta | inserción sociolaboral": {
+      "busquedas": 2,
+      "resultados": 3,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "linkedin | orientador laboral": {
+      "busquedas": 2,
+      "resultados": 18,
+      "exclusivas": 18,
+      "nuevas": 9
+    },
+    "indeed | orientador laboral": {
+      "busquedas": 2,
+      "resultados": 4,
+      "exclusivas": 4,
+      "nuevas": 2
+    },
+    "linkedin | técnico de selección": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 18,
+      "nuevas": 12
+    },
+    "infojobs | técnico de selección": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 19,
+      "nuevas": 10
+    },
+    "indeed | técnico de selección": {
+      "busquedas": 2,
+      "resultados": 18,
+      "exclusivas": 18,
+      "nuevas": 9
+    },
+    "linkedin | técnico de recursos humanos": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 18,
+      "nuevas": 10
+    },
+    "indeed | técnico de recursos humanos": {
+      "busquedas": 2,
+      "resultados": 10,
+      "exclusivas": 10,
+      "nuevas": 10
+    },
+    "linkedin | administrativo de recursos humanos": {
+      "busquedas": 2,
+      "resultados": 6,
+      "exclusivas": 6,
+      "nuevas": 3
+    },
+    "infojobs | administrativo de recursos humanos": {
+      "busquedas": 2,
+      "resultados": 9,
+      "exclusivas": 8,
+      "nuevas": 8
+    }
+  },
+  "amy": {
+    "linkedin | coordinador de marketing": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 9,
+      "nuevas": 2
+    },
+    "linkedin | coordinadora de marketing": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 4,
+      "nuevas": 3
+    },
+    "linkedin | marketing coordinator": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 16,
+      "nuevas": 1
+    },
+    "linkedin | responsable de marketing": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 9,
+      "nuevas": 3
+    },
+    "linkedin | técnico de marketing": {
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 16,
+      "nuevas": 1
+    },
+    "linkedin | marketing internacional": {
+      "busquedas": 2,
+      "resultados": 20,
+      "exclusivas": 18,
+      "nuevas": 3
+    },
+    "infojobs | coordinador de marketing": {
+      "busquedas": 2,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | coordinadora de marketing": {
+      "busquedas": 2,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | marketing coordinator": {
+      "busquedas": 2,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 0
+    },
+    "infojobs | responsable de marketing": {
+      "busquedas": 2,
+      "resultados": 1,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | técnico de marketing": {
+      "busquedas": 2,
+      "resultados": 2,
+      "exclusivas": 2,
+      "nuevas": 0
+    },
+    "infojobs | marketing internacional": {
+      "busquedas": 2,
+      "resultados": 2,
+      "exclusivas": 1,
+      "nuevas": 0
+    },
+    "indeed | coordinador de marketing": {
+      "busquedas": 2,
+      "resultados": 3,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | coordinadora de marketing": {
+      "busquedas": 2,
+      "resultados": 3,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | marketing coordinator": {
+      "busquedas": 2,
+      "resultados": 2,
+      "exclusivas": 2,
+      "nuevas": 0
+    },
+    "indeed | responsable de marketing": {
+      "busquedas": 2,
+      "resultados": 2,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "indeed | técnico de marketing": {
+      "busquedas": 2,
+      "resultados": 4,
+      "exclusivas": 4,
+      "nuevas": 0
+    },
+    "indeed | marketing internacional": {
+      "busquedas": 2,
+      "resultados": 4,
+      "exclusivas": 4,
+      "nuevas": 0
+    }
+  },
+  "desarrollo": {
+    "linkedin | Angular": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 16,
+      "nuevas": 20
+    },
+    "linkedin | C#": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 21,
+      "nuevas": 22
+    },
+    "linkedin | .NET": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 18,
+      "nuevas": 13
+    },
+    "linkedin | Fullstack": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 15,
+      "nuevas": 8
+    },
+    "linkedin | Full Stack": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 14,
+      "nuevas": 12
+    },
+    "linkedin | Frontend": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 23,
+      "nuevas": 19
+    },
+    "linkedin | Backend": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 27,
+      "nuevas": 19
+    },
+    "linkedin | TypeScript": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 16,
+      "nuevas": 14
+    },
+    "linkedin | Node.js": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 17,
+      "nuevas": 9
+    },
+    "linkedin | React": {
+      "busquedas": 3,
+      "resultados": 27,
+      "exclusivas": 15,
+      "nuevas": 12
+    },
+    "infojobs | Angular": {
+      "busquedas": 3,
+      "resultados": 26,
+      "exclusivas": 5,
+      "nuevas": 18
+    },
+    "infojobs | C#": {
+      "busquedas": 3,
+      "resultados": 29,
+      "exclusivas": 11,
+      "nuevas": 20
+    },
+    "infojobs | .NET": {
+      "busquedas": 3,
+      "resultados": 24,
+      "exclusivas": 10,
+      "nuevas": 10
+    },
+    "infojobs | Fullstack": {
+      "busquedas": 3,
+      "resultados": 25,
+      "exclusivas": 11,
+      "nuevas": 13
+    },
+    "infojobs | Full Stack": {
+      "busquedas": 3,
+      "resultados": 27,
+      "exclusivas": 12,
+      "nuevas": 14
+    },
+    "infojobs | Frontend": {
+      "busquedas": 3,
+      "resultados": 25,
+      "exclusivas": 3,
+      "nuevas": 8
+    },
+    "infojobs | Backend": {
+      "busquedas": 3,
+      "resultados": 20,
+      "exclusivas": 13,
+      "nuevas": 14
+    },
+    "infojobs | TypeScript": {
+      "busquedas": 3,
+      "resultados": 18,
+      "exclusivas": 4,
+      "nuevas": 4
+    },
+    "infojobs | Node.js": {
+      "busquedas": 3,
+      "resultados": 17,
+      "exclusivas": 7,
+      "nuevas": 5
+    },
+    "infojobs | React": {
+      "busquedas": 3,
+      "resultados": 23,
+      "exclusivas": 6,
+      "nuevas": 6
+    },
+    "indeed | Angular": {
+      "busquedas": 3,
+      "resultados": 22,
+      "exclusivas": 14,
+      "nuevas": 15
+    },
+    "indeed | C#": {
+      "busquedas": 3,
+      "resultados": 11,
+      "exclusivas": 11,
+      "nuevas": 11
+    },
+    "indeed | .NET": {
+      "busquedas": 3,
+      "resultados": 22,
+      "exclusivas": 16,
+      "nuevas": 16
+    },
+    "indeed | Fullstack": {
+      "busquedas": 3,
+      "resultados": 18,
+      "exclusivas": 9,
+      "nuevas": 9
+    },
+    "indeed | Full Stack": {
+      "busquedas": 3,
+      "resultados": 27,
+      "exclusivas": 20,
+      "nuevas": 19
+    },
+    "indeed | Frontend": {
+      "busquedas": 3,
+      "resultados": 20,
+      "exclusivas": 11,
+      "nuevas": 10
+    },
+    "indeed | Backend": {
+      "busquedas": 3,
+      "resultados": 22,
+      "exclusivas": 21,
+      "nuevas": 16
+    },
+    "indeed | TypeScript": {
+      "busquedas": 3,
+      "resultados": 13,
+      "exclusivas": 9,
+      "nuevas": 8
+    },
+    "indeed | Node.js": {
+      "busquedas": 3,
+      "resultados": 13,
+      "exclusivas": 8,
+      "nuevas": 8
+    },
+    "indeed | React": {
+      "busquedas": 3,
+      "resultados": 18,
+      "exclusivas": 5,
+      "nuevas": 3
+    },
+    "tecnoempleo | Angular": {
+      "busquedas": 3,
+      "resultados": 22,
+      "exclusivas": 4,
+      "nuevas": 12
+    },
+    "tecnoempleo | C#": {
+      "busquedas": 3,
+      "resultados": 17,
+      "exclusivas": 6,
+      "nuevas": 13
+    },
+    "tecnoempleo | .NET": {
+      "busquedas": 3,
+      "resultados": 20,
+      "exclusivas": 10,
+      "nuevas": 5
+    },
+    "tecnoempleo | Fullstack": {
+      "busquedas": 3,
+      "resultados": 14,
+      "exclusivas": 2,
+      "nuevas": 7
+    },
+    "tecnoempleo | Full Stack": {
+      "busquedas": 3,
+      "resultados": 19,
+      "exclusivas": 4,
+      "nuevas": 7
+    },
+    "tecnoempleo | Frontend": {
+      "busquedas": 3,
+      "resultados": 18,
+      "exclusivas": 0,
+      "nuevas": 3
+    },
+    "tecnoempleo | Backend": {
+      "busquedas": 3,
+      "resultados": 13,
+      "exclusivas": 4,
+      "nuevas": 3
+    },
+    "tecnoempleo | TypeScript": {
+      "busquedas": 3,
+      "resultados": 23,
+      "exclusivas": 2,
+      "nuevas": 3
+    },
+    "tecnoempleo | Node.js": {
+      "busquedas": 3,
+      "resultados": 20,
+      "exclusivas": 4,
+      "nuevas": 3
+    },
+    "tecnoempleo | React": {
+      "busquedas": 3,
+      "resultados": 20,
+      "exclusivas": 4,
+      "nuevas": 2
+    }
+  },
+  "internacional": {
+    "linkedin_intl | Angular": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 16,
+      "nuevas": 22
+    },
+    "linkedin_intl | .NET": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 14,
+      "nuevas": 14
+    },
+    "linkedin_intl | C#": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 15,
+      "nuevas": 12
+    },
+    "linkedin_intl | Full Stack": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 12,
+      "nuevas": 18
+    },
+    "linkedin_intl | Fullstack": {
+      "busquedas": 3,
+      "resultados": 27,
+      "exclusivas": 11,
+      "nuevas": 11
+    },
+    "linkedin_intl | TypeScript": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 12,
+      "nuevas": 11
+    },
+    "linkedin_intl | Node.js": {
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 14,
+      "nuevas": 9
+    }
+  }
+}

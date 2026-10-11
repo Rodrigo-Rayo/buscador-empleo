@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+.env
+ofertas.json
+ofertas.json.tmp
+ofertas.html
+ofertas-*.json
+ofertas-*.json.tmp
+ofertas-*.html
+estadisticas.json.tmp
+# Las ofertas de Gabi sí se suben: la búsqueda automática (GitHub Actions) las necesita entre ejecuciones
+!ofertas-gabi.json

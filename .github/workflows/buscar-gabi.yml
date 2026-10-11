@@ -1,0 +1,59 @@
+# Busca ofertas para Gabi y publica su página en GitHub Pages.
+# Todos los días a las 7:00 de Madrid en horario de verano (6:00 en invierno: el cron va en UTC); GitHub puede
+# retrasarlo unos minutos. Unos 27 créditos de Serper por ejecución.
+# También se puede lanzar a mano: pestaña Actions > "Buscar ofertas de Gabi" > Run workflow.
+name: Buscar ofertas de Gabi
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: buscar-gabi
+  cancel-in-progress: false
+
+jobs:
+  buscar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Buscar ofertas nuevas
+        run: npm run buscar:gabi
+        env:
+          SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+
+      # Las ofertas guardadas se suben al repositorio: así la siguiente búsqueda sabe cuáles ya conoce
+      - name: Guardar ofertas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ofertas-gabi.json estadisticas.json
+          git diff --cached --quiet || git commit -m "chore: ofertas de Gabi del $(date +%F)"
+          git push
+
+      - name: Preparar la página
+        run: mkdir _site && cp ofertas-gabi.html _site/index.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

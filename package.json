@@ -1,0 +1,43 @@
+{
+  "name": "buscador-empleo",
+  "version": "1.0.0",
+  "description": "Motor de búsqueda automatizado de ofertas de LinkedIn vía Google Custom Search",
+  "main": "dist/index.js",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "npm run build && node dist/index.js",
+    "ver": "npm run build && node dist/ver.js",
+    "estadisticas": "npm run build && node dist/estadisticas.js",
+    "buscar:desarrollo": "npm run build && node dist/index.js desarrollo",
+    "buscar:internacional": "npm run build && node dist/index.js internacional",
+    "buscar:psicologia": "npm run build && node dist/index.js psicologia",
+    "buscar:gabi": "npm run build && node dist/index.js gabi",
+    "buscar:amy": "npm run build && node dist/index.js amy",
+    "ver:desarrollo": "npm run build && node dist/ver.js desarrollo",
+    "ver:internacional": "npm run build && node dist/ver.js internacional",
+    "ver:psicologia": "npm run build && node dist/ver.js psicologia",
+    "ver:gabi": "npm run build && node dist/ver.js gabi",
+    "ver:amy": "npm run build && node dist/ver.js amy",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "dotenv": "^18.0.3"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.2",
+    "@vitest/coverage-v8": "^5.0.1",
+    "jsdom": "^29.1.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  }
+}
