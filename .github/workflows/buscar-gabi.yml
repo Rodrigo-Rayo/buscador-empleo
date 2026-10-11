@@ -1,12 +1,12 @@
 # Busca ofertas para Gabi y publica su página en GitHub Pages.
-# Todos los días a las 7:00 de Madrid en horario de verano (6:00 en invierno: el cron va en UTC); GitHub puede
-# retrasarlo unos minutos. Unos 27 créditos de Serper por ejecución.
+# Lunes, miércoles y viernes a las 7:00 de Madrid en horario de verano (6:00 en invierno: el cron va en UTC);
+# GitHub puede retrasarlo unos minutos. Unos 27 créditos de Serper por ejecución.
 # También se puede lanzar a mano: pestaña Actions > "Buscar ofertas de Gabi" > Run workflow.
 name: Buscar ofertas de Gabi
 
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '0 5 * * 1,3,5'
   workflow_dispatch:
 
 permissions:
