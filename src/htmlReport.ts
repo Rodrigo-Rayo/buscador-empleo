@@ -33,9 +33,13 @@ function prepareOffers(offers: readonly JobOffer[], profile: SearchProfile) {
 }
 
 /** Barra con las páginas de todas las personas (son archivos hermanos en la misma carpeta). */
-/** Enlaza las páginas activas (y la actual); sin barra si solo hay una, como en la página publicada de Gabi. */
+/**
+ * Enlaza las páginas activas (y la actual); sin barra si solo hay una. Las publicadas (las de Gabi y Amy) ni la
+ * tienen ni aparecen en ella: cada persona ve solo su página.
+ */
 function renderNav(current: SearchProfile): string {
-  const visible = PROFILES.filter((profile) => !profile.paused || profile.id === current.id);
+  if (current.published) return '';
+  const visible = PROFILES.filter((profile) => (!profile.paused && !profile.published) || profile.id === current.id);
   if (visible.length < 2) return '';
   const links = visible.map((profile) => {
     const label = escapeHtml(profile.page.navLabel) + (profile.paused ? ' <small>(pausada)</small>' : '');

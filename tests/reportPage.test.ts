@@ -209,18 +209,13 @@ describe('página de ofertas', () => {
     expect(titles()).toHaveLength(3);
   });
 
-  it('barra de navegación: solo los perfiles activos más el actual, que se marca', () => {
-    const { doc } = openPage({ profile: 'amy' });
-    const links = [...doc.querySelectorAll('nav.people a')].map((a) => [a.getAttribute('href'), a.getAttribute('aria-current')]);
-    expect(links).toEqual([
-      ['ofertas-gabi.html', null],
-      ['ofertas-amy.html', 'page'],
-    ]);
-    expect(doc.querySelector('nav.people a small')!.textContent).toBe('(pausada)');
+  it.each(['gabi', 'amy'])('la página publicada de %s no tiene barra (no enlaza búsquedas de otras personas)', (profile) => {
+    const { doc } = openPage({ profile });
+    expect(doc.querySelector('nav.people')).toBeNull();
   });
 
-  it('sin barra de navegación si su perfil es el único activo (no enlaza búsquedas de otras personas)', () => {
-    const { doc } = openPage({ profile: 'gabi' });
+  it('sin barra en una página local si no hay otra activa sin publicar', () => {
+    const { doc } = openPage({ profile: 'psicologia' });
     expect(doc.querySelector('nav.people')).toBeNull();
   });
 

@@ -1,8 +1,10 @@
-# Busca ofertas para Gabi y publica su página en GitHub Pages.
+# Busca ofertas para Gabi y Amy y publica la página de cada una en GitHub Pages:
+#   Gabi → https://rodrigo-rayo.github.io/buscador-empleo/
+#   Amy  → https://rodrigo-rayo.github.io/buscador-empleo/amy/
 # Lunes, miércoles y viernes a las 7:00 de Madrid en horario de verano (6:00 en invierno: el cron va en UTC);
-# GitHub puede retrasarlo unos minutos. Unos 27 créditos de Serper por ejecución.
-# También se puede lanzar a mano: pestaña Actions > "Buscar ofertas de Gabi" > Run workflow.
-name: Buscar ofertas de Gabi
+# GitHub puede retrasarlo unos minutos. Unos 46 créditos de Serper por ejecución (27 Gabi + 19 Amy).
+# También se puede lanzar a mano: pestaña Actions > "Buscar ofertas" > Run workflow.
+name: Buscar ofertas
 
 on:
   schedule:
@@ -10,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       buscar:
-        description: 'Buscar ofertas nuevas (gasta ~27 créditos). Desmarcado: solo regenera la página'
+        description: 'Buscar ofertas nuevas (gasta ~46 créditos). Desmarcado: solo regenera las páginas'
         type: boolean
         default: true
 
@@ -20,7 +22,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: buscar-gabi
+  group: buscar
   cancel-in-progress: false
 
 jobs:
@@ -39,27 +41,31 @@ jobs:
 
       - run: npm ci
 
+      # Perfiles explícitos: si en local se reactiva otro, aquí no se busca ni se publica
       - name: Buscar ofertas nuevas
         if: github.event_name == 'schedule' || inputs.buscar
-        run: npm run buscar:gabi
+        run: npm run build && node dist/index.js gabi amy
         env:
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+
+      - name: Regenerar las páginas sin buscar
+        if: github.event_name == 'workflow_dispatch' && !inputs.buscar
+        run: npm run build && node dist/ver.js --sin-abrir
 
       # Las ofertas guardadas se suben al repositorio: así la siguiente búsqueda sabe cuáles ya conoce
       - name: Guardar ofertas
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ofertas-gabi.json estadisticas.json
-          git diff --cached --quiet || git commit -m "chore: ofertas de Gabi del $(date +%F)"
+          git add ofertas-gabi.json ofertas-amy.json estadisticas.json
+          git diff --cached --quiet || git commit -m "chore: ofertas del $(date +%F)"
           git push
 
-      - name: Regenerar la página sin buscar
-        if: github.event_name == 'workflow_dispatch' && !inputs.buscar
-        run: npm run build && node dist/ver.js --sin-abrir
-
-      - name: Preparar la página
-        run: mkdir _site && cp ofertas-gabi.html _site/index.html
+      - name: Preparar las páginas
+        run: |
+          mkdir -p _site/amy
+          cp ofertas-gabi.html _site/index.html
+          cp ofertas-amy.html _site/amy/index.html
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

@@ -20,6 +20,8 @@ export interface SearchProfile {
   readonly id: string;
   /** Pausado: `npm start` lo salta (se puede lanzar a mano con `npm run buscar:<id>`) */
   readonly paused: boolean;
+  /** Su página se publica en GitHub Pages para esa persona: sin barra que enlace las búsquedas de los demás */
+  readonly published?: boolean;
   /** Una búsqueda (1 crédito) por palabra clave y portal */
   readonly keywords: readonly string[];
   readonly portals: readonly PortalId[];
@@ -166,6 +168,7 @@ const PSICOLOGIA: SearchProfile = {
 const TRABAJO_SOCIAL: SearchProfile = {
   id: 'gabi',
   paused: false,
+  published: true,
   keywords: [
     'trabajador social',
     'trabajadora social',
@@ -226,9 +229,15 @@ const TRABAJO_SOCIAL: SearchProfile = {
   },
 };
 
+// Su CV: coordinación de marketing en retail (campañas promocionales, punto de venta), e-commerce, email marketing y
+// marketing digital; más de 10 años de experiencia, máster en Marketing Digital y Analítico, grado en Negocios
+// Internacionales, inglés B1. Portales por palabra clave según una prueba con un mes de ofertas.
+// Descartadas por traer ruido: "marketing analyst" (remotos de EE. UU.), "analista de marketing", "marketing retail",
+// "marketing y ventas", "e-commerce manager" (repetía lo de "ecommerce")
 const MARKETING: SearchProfile = {
   id: 'amy',
-  paused: true,
+  paused: false,
+  published: true,
   keywords: [
     'coordinador de marketing',
     'coordinadora de marketing',
@@ -236,30 +245,61 @@ const MARKETING: SearchProfile = {
     'responsable de marketing',
     'técnico de marketing',
     'marketing internacional',
+    'trade marketing',
+    'ecommerce',
+    'marketing digital',
+    'email marketing',
+    'brand manager',
+    'especialista en marketing',
   ],
   // Hacesfalta y Tecnoempleo no: apenas publican marketing
   portals: ['linkedin', 'infojobs', 'indeed'],
+  // InfoJobs e Indeed casi no tienen estos puestos con el título exacto: solo donde la prueba trajo ofertas
+  keywordPortals: {
+    'coordinador de marketing': ['linkedin'],
+    'coordinadora de marketing': ['linkedin'],
+    'marketing coordinator': ['linkedin'],
+    'responsable de marketing': ['linkedin'],
+    'marketing internacional': ['linkedin'],
+    'trade marketing': ['linkedin', 'indeed'],
+    ecommerce: ['linkedin', 'infojobs'],
+    'marketing digital': ['linkedin', 'indeed'],
+    'email marketing': ['linkedin', 'infojobs'],
+    'brand manager': ['linkedin'],
+    'especialista en marketing': ['linkedin', 'infojobs'],
+  },
   requiredTerms: [],
   locationTerms: ['Madrid', 'remoto', 'remote', 'teletrabajo', 'híbrido'],
-  excludedTitleTerms: ['director', 'directora', 'head', 'senior'],
+  // "senior" no se excluye: con su experiencia encajan puestos senior
+  excludedTitleTerms: ['director', 'directora', 'head', 'prácticas', 'becario', 'becaria', 'internship', 'intern'],
+  // Explícita: en GitHub Actions no hay .env con DATE_RESTRICT y buscaría sin límite de fecha
+  dateRestrict: 'm1',
   outputFile: 'ofertas-amy.json',
   reportFile: 'ofertas-amy.html',
   page: {
     navLabel: 'Amy · Marketing',
-    documentTitle: 'Ofertas de marketing',
+    documentTitle: 'Ofertas para Amy',
     kicker: ['Buscador de empleo · Amy', 'Madrid · Remoto'],
     heading: 'Ofertas',
-    emphasis: 'coordinación de marketing',
-    matchLabel: 'Solo coordinación / internacional',
+    emphasis: 'marketing · trade · e-commerce',
+    matchLabel: 'Solo las que encajan con su perfil',
+    onlyMatchByDefault: true,
     scoring: [
       { label: 'Coordinación', pattern: 'coordinad|coordinator', points: 3 },
-      // Grado en Negocios Internacionales
-      { label: 'Internacional', pattern: 'internacional|international|export|global|trade', points: 2 },
-      { label: 'Marketing', pattern: 'marketing', points: 1 },
-      { label: 'Prácticas', pattern: 'practicas|becari|\\bintern\\b|internship', points: -2 },
+      { label: 'Trade / retail', pattern: 'trade marketing|retail|punto de venta|shopper|store marketing|\\btrade\\b', points: 3 },
+      { label: 'E-commerce', pattern: 'e-?commerce|marketplace|tienda online', points: 2 },
+      { label: 'Marketing digital / CRM', pattern: 'digital|email|crm|automation|growth|performance', points: 2 },
+      { label: 'Internacional', pattern: 'internacional|international|export|comercio exterior', points: 2 },
+      { label: 'Marca', pattern: 'brand|\\bmarca\\b', points: 1 },
+      // Sin etiqueta: solo sube las de marketing por encima del ruido
+      { label: '', pattern: 'marketing', points: 1 },
+      { label: 'Prácticas', pattern: 'practicas|becari|\\bbeca\\b|\\binterns?\\b|internship|intake|graduate|student', points: -3 },
+      // Inglés B1: puestos para otros mercados piden su idioma nativo
+      { label: 'Otro idioma', pattern: 'french|german|italian|dutch|nordic|frances|aleman|italiano', points: -2 },
+      { label: 'Fuera de España', pattern: '\\bus remote|\\busa\\b|united states|latam|/hr\\b|per hour', points: -3 },
       {
         label: 'No es marketing',
-        pattern: 'telemarketing|teleoperador|inmobiliari|puerta fria|vendedor|captador|comercial de calle',
+        pattern: 'telemarketing|teleoperador|inmobiliari|puerta fria|vendedor|captador|comercial de calle|salesforce|reporting',
         points: -3,
       },
     ],

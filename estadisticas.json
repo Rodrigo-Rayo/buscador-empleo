@@ -377,40 +377,40 @@
   },
   "amy": {
     "linkedin | coordinador de marketing": {
-      "busquedas": 2,
-      "resultados": 20,
-      "exclusivas": 9,
-      "nuevas": 2
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 15,
+      "nuevas": 12
     },
     "linkedin | coordinadora de marketing": {
-      "busquedas": 2,
-      "resultados": 20,
-      "exclusivas": 4,
-      "nuevas": 3
+      "busquedas": 3,
+      "resultados": 21,
+      "exclusivas": 5,
+      "nuevas": 4
     },
     "linkedin | marketing coordinator": {
-      "busquedas": 2,
-      "resultados": 20,
-      "exclusivas": 16,
-      "nuevas": 1
+      "busquedas": 3,
+      "resultados": 24,
+      "exclusivas": 20,
+      "nuevas": 4
     },
     "linkedin | responsable de marketing": {
-      "busquedas": 2,
-      "resultados": 20,
-      "exclusivas": 9,
-      "nuevas": 3
+      "busquedas": 3,
+      "resultados": 30,
+      "exclusivas": 16,
+      "nuevas": 10
     },
     "linkedin | técnico de marketing": {
-      "busquedas": 2,
-      "resultados": 17,
-      "exclusivas": 16,
-      "nuevas": 1
+      "busquedas": 3,
+      "resultados": 27,
+      "exclusivas": 25,
+      "nuevas": 9
     },
     "linkedin | marketing internacional": {
-      "busquedas": 2,
-      "resultados": 20,
-      "exclusivas": 18,
-      "nuevas": 3
+      "busquedas": 3,
+      "resultados": 22,
+      "exclusivas": 20,
+      "nuevas": 5
     },
     "infojobs | coordinador de marketing": {
       "busquedas": 2,
@@ -437,10 +437,10 @@
       "nuevas": 0
     },
     "infojobs | técnico de marketing": {
-      "busquedas": 2,
-      "resultados": 2,
-      "exclusivas": 2,
-      "nuevas": 0
+      "busquedas": 3,
+      "resultados": 3,
+      "exclusivas": 3,
+      "nuevas": 1
     },
     "infojobs | marketing internacional": {
       "busquedas": 2,
@@ -473,7 +473,7 @@
       "nuevas": 0
     },
     "indeed | técnico de marketing": {
-      "busquedas": 2,
+      "busquedas": 3,
       "resultados": 4,
       "exclusivas": 4,
       "nuevas": 0
@@ -483,6 +483,72 @@
       "resultados": 4,
       "exclusivas": 4,
       "nuevas": 0
+    },
+    "linkedin | trade marketing": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 6,
+      "nuevas": 6
+    },
+    "indeed | trade marketing": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 7,
+      "nuevas": 7
+    },
+    "linkedin | ecommerce": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 7,
+      "nuevas": 7
+    },
+    "infojobs | ecommerce": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 3,
+      "nuevas": 3
+    },
+    "linkedin | marketing digital": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 4,
+      "nuevas": 7
+    },
+    "indeed | marketing digital": {
+      "busquedas": 1,
+      "resultados": 10,
+      "exclusivas": 10,
+      "nuevas": 10
+    },
+    "linkedin | email marketing": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 7,
+      "nuevas": 6
+    },
+    "infojobs | email marketing": {
+      "busquedas": 1,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "linkedin | brand manager": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 6,
+      "nuevas": 6
+    },
+    "linkedin | especialista en marketing": {
+      "busquedas": 1,
+      "resultados": 7,
+      "exclusivas": 4,
+      "nuevas": 4
+    },
+    "infojobs | especialista en marketing": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
     }
   },
   "desarrollo": {

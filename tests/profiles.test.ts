@@ -36,6 +36,10 @@ describe('PROFILES', () => {
     }
   });
 
+  it('los perfiles publicados tienen ventana de fecha propia (en GitHub Actions no hay DATE_RESTRICT)', () => {
+    for (const profile of PROFILES.filter((p) => p.published)) expect(profile.dateRestrict).toBeDefined();
+  });
+
   it('Tecnoempleo solo en desarrollo (es un portal exclusivamente de informática)', () => {
     expect(PROFILES.filter((p) => p.portals.includes('tecnoempleo')).map((p) => p.id)).toEqual(['desarrollo']);
   });
@@ -74,8 +78,8 @@ describe('selectProfiles', () => {
     expect(selectProfiles([])).toBe(PROFILES);
   });
 
-  it('activeOnly: sin argumentos salta los pausados (solo queda gabi)', () => {
-    expect(selectProfiles([], { activeOnly: true }).map((p) => p.id)).toEqual(['gabi']);
+  it('activeOnly: sin argumentos salta los pausados (quedan gabi y amy)', () => {
+    expect(selectProfiles([], { activeOnly: true }).map((p) => p.id)).toEqual(['gabi', 'amy']);
   });
 
   it('un perfil pausado se puede lanzar pidiéndolo explícitamente', () => {

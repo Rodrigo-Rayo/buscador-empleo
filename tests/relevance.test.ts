@@ -94,9 +94,14 @@ describe('scoreTitle (Amy: marketing)', () => {
     ['Marketing Coordinator - Sonae Sierra', 4],
     ['Coordinador de marketing y desarrollo comercial', 4],
     ['International Marketing Coordinator', 6],
-    ['Técnico de Marketing Digital, Captación', 1],
-    ['Marketing Coordinator Intern', 2],
+    ['Técnico de Marketing Digital, Captación', 3],
+    ['Marketing Coordinator Intern', 1],
     ['Coordinador/a de ventas- Telemarketing- Gran Vía', 1],
+    ['Trade Marketing Specialist', 4],
+    ['Ecommerce Marketplace Manager', 2],
+    ['Retail and Trade Marketing Internships', 1],
+    ['Digital Marketing Seo Specialist – French Market', 1],
+    ['Salesforce Analyst', -3],
   ])('%s → %i', (titulo, encaje) => expect(amy(titulo)).toBe(encaje));
 
   it('"intern" no penaliza "international"', () => {
