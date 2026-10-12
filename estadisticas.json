@@ -195,10 +195,10 @@
   },
   "gabi": {
     "linkedin | trabajador social": {
-      "busquedas": 5,
-      "resultados": 50,
-      "exclusivas": 25,
-      "nuevas": 19
+      "busquedas": 6,
+      "resultados": 60,
+      "exclusivas": 29,
+      "nuevas": 20
     },
     "linkedin | trabajadora social": {
       "busquedas": 2,
@@ -207,14 +207,14 @@
       "nuevas": 0
     },
     "linkedin | trabajo social": {
-      "busquedas": 5,
-      "resultados": 49,
-      "exclusivas": 27,
+      "busquedas": 6,
+      "resultados": 59,
+      "exclusivas": 31,
       "nuevas": 14
     },
     "infojobs | trabajador social": {
-      "busquedas": 5,
-      "resultados": 25,
+      "busquedas": 6,
+      "resultados": 26,
       "exclusivas": 19,
       "nuevas": 6
     },
@@ -225,28 +225,28 @@
       "nuevas": 0
     },
     "infojobs | trabajo social": {
-      "busquedas": 5,
-      "resultados": 22,
-      "exclusivas": 11,
-      "nuevas": 7
+      "busquedas": 6,
+      "resultados": 28,
+      "exclusivas": 15,
+      "nuevas": 8
     },
     "indeed | trabajador social": {
-      "busquedas": 5,
-      "resultados": 30,
+      "busquedas": 6,
+      "resultados": 40,
       "exclusivas": 18,
-      "nuevas": 22
+      "nuevas": 23
     },
     "indeed | trabajadora social": {
-      "busquedas": 5,
-      "resultados": 41,
-      "exclusivas": 32,
+      "busquedas": 6,
+      "resultados": 44,
+      "exclusivas": 34,
       "nuevas": 7
     },
     "indeed | trabajo social": {
-      "busquedas": 5,
-      "resultados": 30,
-      "exclusivas": 23,
-      "nuevas": 7
+      "busquedas": 6,
+      "resultados": 40,
+      "exclusivas": 24,
+      "nuevas": 8
     },
     "hacesfalta | trabajador social": {
       "busquedas": 2,
@@ -255,121 +255,121 @@
       "nuevas": 0
     },
     "hacesfalta | trabajadora social": {
-      "busquedas": 5,
+      "busquedas": 6,
       "resultados": 17,
       "exclusivas": 6,
       "nuevas": 5
     },
     "hacesfalta | trabajo social": {
-      "busquedas": 5,
-      "resultados": 39,
-      "exclusivas": 28,
-      "nuevas": 13
+      "busquedas": 6,
+      "resultados": 45,
+      "exclusivas": 33,
+      "nuevas": 15
     },
     "linkedin | violencia de género": {
-      "busquedas": 3,
-      "resultados": 26,
-      "exclusivas": 22,
+      "busquedas": 4,
+      "resultados": 32,
+      "exclusivas": 26,
       "nuevas": 14
     },
     "infojobs | violencia de género": {
-      "busquedas": 3,
-      "resultados": 22,
-      "exclusivas": 18,
+      "busquedas": 4,
+      "resultados": 26,
+      "exclusivas": 20,
       "nuevas": 10
     },
     "indeed | violencia de género": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 15,
       "exclusivas": 13,
       "nuevas": 6
     },
     "hacesfalta | violencia de género": {
-      "busquedas": 3,
-      "resultados": 14,
+      "busquedas": 4,
+      "resultados": 15,
       "exclusivas": 7,
       "nuevas": 5
     },
     "infojobs | protección internacional": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 12,
       "exclusivas": 12,
       "nuevas": 6
     },
     "indeed | protección internacional": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 4,
       "exclusivas": 4,
       "nuevas": 2
     },
     "hacesfalta | protección internacional": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 13,
       "exclusivas": 6,
       "nuevas": 3
     },
     "infojobs | inserción sociolaboral": {
-      "busquedas": 3,
-      "resultados": 11,
+      "busquedas": 4,
+      "resultados": 12,
       "exclusivas": 10,
       "nuevas": 5
     },
     "hacesfalta | inserción sociolaboral": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 3,
       "exclusivas": 1,
       "nuevas": 1
     },
     "linkedin | orientador laboral": {
-      "busquedas": 3,
-      "resultados": 21,
-      "exclusivas": 21,
+      "busquedas": 4,
+      "resultados": 23,
+      "exclusivas": 23,
       "nuevas": 9
     },
     "indeed | orientador laboral": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 14,
       "exclusivas": 13,
       "nuevas": 11
     },
     "linkedin | técnico de selección": {
-      "busquedas": 3,
-      "resultados": 30,
-      "exclusivas": 26,
-      "nuevas": 16
+      "busquedas": 4,
+      "resultados": 36,
+      "exclusivas": 32,
+      "nuevas": 22
     },
     "infojobs | técnico de selección": {
-      "busquedas": 3,
-      "resultados": 30,
-      "exclusivas": 26,
-      "nuevas": 18
+      "busquedas": 4,
+      "resultados": 33,
+      "exclusivas": 29,
+      "nuevas": 20
     },
     "indeed | técnico de selección": {
-      "busquedas": 3,
-      "resultados": 19,
-      "exclusivas": 19,
+      "busquedas": 4,
+      "resultados": 20,
+      "exclusivas": 20,
       "nuevas": 9
     },
     "linkedin | técnico de recursos humanos": {
-      "busquedas": 3,
-      "resultados": 30,
-      "exclusivas": 26,
-      "nuevas": 18
+      "busquedas": 4,
+      "resultados": 40,
+      "exclusivas": 36,
+      "nuevas": 21
     },
     "indeed | técnico de recursos humanos": {
-      "busquedas": 3,
-      "resultados": 12,
-      "exclusivas": 12,
+      "busquedas": 4,
+      "resultados": 14,
+      "exclusivas": 14,
       "nuevas": 10
     },
     "linkedin | administrativo de recursos humanos": {
-      "busquedas": 3,
-      "resultados": 7,
-      "exclusivas": 7,
+      "busquedas": 4,
+      "resultados": 8,
+      "exclusivas": 8,
       "nuevas": 3
     },
     "infojobs | administrativo de recursos humanos": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 16,
       "exclusivas": 13,
       "nuevas": 13
@@ -377,40 +377,40 @@
   },
   "amy": {
     "linkedin | coordinador de marketing": {
-      "busquedas": 3,
-      "resultados": 30,
-      "exclusivas": 15,
-      "nuevas": 12
+      "busquedas": 4,
+      "resultados": 40,
+      "exclusivas": 19,
+      "nuevas": 21
     },
     "linkedin | coordinadora de marketing": {
-      "busquedas": 3,
-      "resultados": 21,
-      "exclusivas": 5,
+      "busquedas": 4,
+      "resultados": 22,
+      "exclusivas": 6,
       "nuevas": 4
     },
     "linkedin | marketing coordinator": {
-      "busquedas": 3,
-      "resultados": 24,
-      "exclusivas": 20,
-      "nuevas": 4
+      "busquedas": 4,
+      "resultados": 29,
+      "exclusivas": 25,
+      "nuevas": 6
     },
     "linkedin | responsable de marketing": {
-      "busquedas": 3,
-      "resultados": 30,
-      "exclusivas": 16,
-      "nuevas": 10
+      "busquedas": 4,
+      "resultados": 40,
+      "exclusivas": 19,
+      "nuevas": 16
     },
     "linkedin | técnico de marketing": {
-      "busquedas": 3,
-      "resultados": 27,
-      "exclusivas": 25,
-      "nuevas": 9
+      "busquedas": 4,
+      "resultados": 37,
+      "exclusivas": 30,
+      "nuevas": 16
     },
     "linkedin | marketing internacional": {
-      "busquedas": 3,
-      "resultados": 22,
-      "exclusivas": 20,
-      "nuevas": 5
+      "busquedas": 4,
+      "resultados": 29,
+      "exclusivas": 26,
+      "nuevas": 11
     },
     "infojobs | coordinador de marketing": {
       "busquedas": 2,
@@ -437,7 +437,7 @@
       "nuevas": 0
     },
     "infojobs | técnico de marketing": {
-      "busquedas": 3,
+      "busquedas": 4,
       "resultados": 3,
       "exclusivas": 3,
       "nuevas": 1
@@ -473,9 +473,9 @@
       "nuevas": 0
     },
     "indeed | técnico de marketing": {
-      "busquedas": 3,
-      "resultados": 4,
-      "exclusivas": 4,
+      "busquedas": 4,
+      "resultados": 5,
+      "exclusivas": 5,
       "nuevas": 0
     },
     "indeed | marketing internacional": {
@@ -485,70 +485,70 @@
       "nuevas": 0
     },
     "linkedin | trade marketing": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 6,
-      "nuevas": 6
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 9,
+      "nuevas": 10
     },
     "indeed | trade marketing": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 7,
+      "busquedas": 2,
+      "resultados": 9,
+      "exclusivas": 9,
       "nuevas": 7
     },
     "linkedin | ecommerce": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 7,
-      "nuevas": 7
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 16,
+      "nuevas": 16
     },
     "infojobs | ecommerce": {
-      "busquedas": 1,
-      "resultados": 3,
+      "busquedas": 2,
+      "resultados": 4,
       "exclusivas": 3,
       "nuevas": 3
     },
     "linkedin | marketing digital": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 4,
-      "nuevas": 7
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 8,
+      "nuevas": 11
     },
     "indeed | marketing digital": {
-      "busquedas": 1,
-      "resultados": 10,
-      "exclusivas": 10,
-      "nuevas": 10
+      "busquedas": 2,
+      "resultados": 14,
+      "exclusivas": 14,
+      "nuevas": 12
     },
     "linkedin | email marketing": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 7,
-      "nuevas": 6
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 14,
+      "nuevas": 13
     },
     "infojobs | email marketing": {
-      "busquedas": 1,
-      "resultados": 0,
-      "exclusivas": 0,
-      "nuevas": 0
+      "busquedas": 2,
+      "resultados": 4,
+      "exclusivas": 2,
+      "nuevas": 2
     },
     "linkedin | brand manager": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 6,
-      "nuevas": 6
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 11,
+      "nuevas": 11
     },
     "linkedin | especialista en marketing": {
-      "busquedas": 1,
-      "resultados": 7,
-      "exclusivas": 4,
-      "nuevas": 4
+      "busquedas": 2,
+      "resultados": 17,
+      "exclusivas": 7,
+      "nuevas": 7
     },
     "infojobs | especialista en marketing": {
-      "busquedas": 1,
-      "resultados": 1,
-      "exclusivas": 1,
-      "nuevas": 1
+      "busquedas": 2,
+      "resultados": 3,
+      "exclusivas": 2,
+      "nuevas": 2
     }
   },
   "desarrollo": {
