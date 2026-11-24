@@ -72,7 +72,7 @@ jobs:
           cp ofertas-marilyn.html _site/marilyn/index.html
 
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
       - id: deploy
