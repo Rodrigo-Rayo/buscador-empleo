@@ -3,9 +3,9 @@ import { INDEED } from './indeed';
 import { INFOJOBS } from './infojobs';
 import { LINKEDIN, LINKEDIN_INTL } from './linkedin';
 import { TECNOEMPLEO } from './tecnoempleo';
-import type { JobSource, PortalId } from './types';
+import type { JobSource, PortalId, SearchPortalId } from './types';
 
-export const SOURCES: Readonly<Record<PortalId, JobSource>> = {
+export const SOURCES: Readonly<Record<SearchPortalId, JobSource>> = {
   linkedin: LINKEDIN,
   linkedin_intl: LINKEDIN_INTL,
   infojobs: INFOJOBS,
@@ -14,5 +14,11 @@ export const SOURCES: Readonly<Record<PortalId, JobSource>> = {
   hacesfalta: HACESFALTA,
 };
 
-export type { JobSource, ParsedJob, PortalId } from './types';
-export { PORTAL_IDS, isPortalId } from './types';
+/** Nombre visible de cada portal, tanto los que se buscan por Google como los listados que se leen directamente */
+export const PORTAL_NAMES: Readonly<Record<PortalId, string>> = {
+  ...(Object.fromEntries(Object.values(SOURCES).map((source) => [source.id, source.nombre])) as Record<SearchPortalId, string>),
+  eduso: 'Eduso (empleo social)',
+};
+
+export type { JobSource, ListingId, ParsedJob, PortalId, SearchPortalId } from './types';
+export { LISTING_IDS, PORTAL_IDS, SEARCH_PORTAL_IDS, isPortalId } from './types';

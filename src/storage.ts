@@ -15,7 +15,14 @@ export interface MergeResult {
 const REQUIRED_FIELDS = ['id', 'titulo', 'empresa', 'ubicacion', 'enlace', 'fechaGuardado'] as const;
 const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
 
-type StoredOffer = Omit<JobOffer, 'portal' | 'fechaPublicacion'> & { portal?: unknown; fechaPublicacion?: unknown };
+type StoredOffer = Omit<JobOffer, 'portal' | 'fechaPublicacion' | 'fechaLimite' | 'descripcion'> & {
+  portal?: unknown;
+  fechaPublicacion?: unknown;
+  fechaLimite?: unknown;
+  descripcion?: unknown;
+};
+
+const isIsoDay = (value: unknown): value is string => typeof value === 'string' && ISO_DAY.test(value);
 
 function isStoredOffer(value: unknown): value is StoredOffer {
   if (typeof value !== 'object' || value === null) return false;
@@ -43,10 +50,12 @@ export async function loadOffers(file: string): Promise<readonly JobOffer[]> {
     throw new Error(`${file} no tiene el formato esperado (array de ofertas).`);
   }
   // Las ofertas guardadas antes de añadir más portales no tienen "portal": todas eran de LinkedIn
-  return data.map(({ fechaPublicacion, ...offer }) => ({
+  return data.map(({ fechaPublicacion, fechaLimite, descripcion, ...offer }) => ({
     ...offer,
     portal: isPortalId(offer.portal) ? offer.portal : 'linkedin',
-    ...(typeof fechaPublicacion === 'string' && ISO_DAY.test(fechaPublicacion) ? { fechaPublicacion } : {}),
+    ...(isIsoDay(fechaPublicacion) ? { fechaPublicacion } : {}),
+    ...(isIsoDay(fechaLimite) ? { fechaLimite } : {}),
+    ...(typeof descripcion === 'string' && descripcion ? { descripcion } : {}),
   }));
 }
 

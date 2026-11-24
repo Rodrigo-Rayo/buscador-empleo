@@ -26,6 +26,12 @@ describe('PROFILES', () => {
     }
   });
 
+  // Fallo repetido al editar: '\\b' escrito como '\b' es un carácter de retroceso y la regla deja de casar en silencio
+  it('ningún patrón de encaje contiene un carácter de retroceso (\\b mal escapado)', () => {
+    const broken = PROFILES.flatMap((p) => p.page.scoring.filter((rule) => rule.pattern.includes('\b')).map((rule) => `${p.id}: ${rule.label}`));
+    expect(broken).toEqual([]);
+  });
+
   it('keywordPortals solo restringe palabras clave del perfil a portales del perfil', () => {
     for (const profile of PROFILES) {
       for (const [keyword, portals] of Object.entries(profile.keywordPortals ?? {})) {

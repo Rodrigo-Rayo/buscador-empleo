@@ -259,6 +259,44 @@ describe('página de ofertas', () => {
     expect(published('Sin fecha')).toBeNull();
   });
 
+  it('muestra el plazo de inscripción y avisa en los últimos días', () => {
+    const isoDaysFromNow = (days: number) => {
+      const d = new Date();
+      d.setDate(d.getDate() + days);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    };
+    const { row } = openPage({
+      offers: [
+        { ...offer('40', 'Con tiempo', 'Madrid'), fechaLimite: isoDaysFromNow(10) },
+        { ...offer('41', 'Casi cerrada', 'Madrid'), fechaLimite: isoDaysFromNow(2) },
+        { ...offer('42', 'Cierra hoy', 'Madrid'), fechaLimite: isoDaysFromNow(0) },
+        { ...offer('43', 'Ya cerrada', 'Madrid'), fechaLimite: isoDaysFromNow(-1) },
+        offer('44', 'Sin plazo', 'Madrid'),
+      ],
+    });
+    const deadline = (titulo: string) => row(titulo).querySelector('.deadline');
+    expect(deadline('Con tiempo')!.textContent).toMatch(/^Plazo hasta el /);
+    expect(deadline('Con tiempo')!.classList.contains('old')).toBe(false);
+    expect(deadline('Casi cerrada')!.textContent).toBe('Quedan 2 días de plazo');
+    expect(deadline('Cierra hoy')!.textContent).toBe('Último día para inscribirse');
+    expect(deadline('Ya cerrada')!.textContent).toMatch(/^Plazo cerrado el /);
+    expect(deadline('Ya cerrada')!.classList.contains('old')).toBe(true);
+    expect(deadline('Sin plazo')).toBeNull();
+  });
+
+  it('enlaza las fichas de Eduso y no incrusta la descripción en la página', () => {
+    const eduso: JobOffer = {
+      ...offer('eduso:65775', 'Educador/a sexual', 'Madrid'),
+      portal: 'eduso',
+      enlace: 'https://www.eduso.net/?p=65775',
+      descripcion: 'TEXTO-DE-DESCRIPCION',
+    };
+    const { row, dom } = openPage({ profile: 'marilyn', offers: [eduso] });
+    expect(row('Educador/a sexual').querySelector('a')!.getAttribute('href')).toBe('https://www.eduso.net/?p=65775');
+    expect(row('Educador/a sexual').querySelector('.ext')!.textContent).toBe('Eduso (empleo social) ↗');
+    expect(dom.serialize()).not.toContain('TEXTO-DE-DESCRIPCION');
+  });
+
   it('con un solo portal no muestra el filtro por portal', () => {
     const { doc } = openPage();
     expect((doc.getElementById('portals') as HTMLElement).hidden).toBe(true);

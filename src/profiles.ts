@@ -1,5 +1,5 @@
 import type { ScoringRule } from './relevance';
-import type { PortalId } from './sources';
+import type { ListingId, SearchPortalId } from './sources';
 
 export interface ReportPage {
   /** Nombre corto en la barra que enlaza las páginas de todas las personas */
@@ -24,9 +24,11 @@ export interface SearchProfile {
   readonly published?: boolean;
   /** Una búsqueda (1 crédito) por palabra clave y portal */
   readonly keywords: readonly string[];
-  readonly portals: readonly PortalId[];
+  readonly portals: readonly SearchPortalId[];
   /** Restringe algunas palabras clave a parte de los portales (donde no traen nada se ahorra el crédito) */
-  readonly keywordPortals?: Readonly<Record<string, readonly PortalId[]>>;
+  readonly keywordPortals?: Readonly<Record<string, readonly SearchPortalId[]>>;
+  /** Webs cuyo listado se lee entero (sin Google ni créditos); se guardan solo las ofertas que encajan con el perfil */
+  readonly listings?: readonly ListingId[];
   /** Si no está vacío, el resultado debe contener al menos uno (p. ej. nivel junior/mid). Solo en portales que lo admiten */
   readonly requiredTerms: readonly string[];
   readonly locationTerms: readonly string[];
@@ -138,8 +140,6 @@ const MARILYN: SearchProfile = {
     'sexología',
     'terapia sexual',
     'salud sexual',
-    'VIH',
-    'LGTBI',
     'violencia sexual',
     'violencia de género',
     'agente de igualdad',
@@ -148,22 +148,23 @@ const MARILYN: SearchProfile = {
     'consultor de selección',
     'técnico de formación',
   ],
-  // Tecnoempleo no: solo publica ofertas de informática
-  portals: ['linkedin', 'infojobs', 'indeed', 'hacesfalta'],
+  // Tecnoempleo no: solo publica ofertas de informática. Hacesfalta no se busca por Google: su listado de Madrid se
+  // lee entero y con la ficha completa (ver listings), que es donde salen VIH, LGTBI y lo afectivo-sexual
+  portals: ['linkedin', 'infojobs', 'indeed'],
   keywordPortals: {
     'sexólogo': ['linkedin'],
-    'sexología': ['linkedin', 'hacesfalta'],
+    'sexología': ['linkedin'],
     'terapia sexual': ['linkedin'],
     'salud sexual': ['linkedin'],
-    VIH: ['hacesfalta'],
-    LGTBI: ['hacesfalta'],
-    'violencia sexual': ['linkedin', 'hacesfalta'],
+    'violencia sexual': ['linkedin'],
     'agente de igualdad': ['linkedin'],
-    'psicólogo': ['linkedin', 'indeed', 'hacesfalta'],
+    'psicólogo': ['linkedin', 'indeed'],
     'técnico de selección': ['linkedin', 'infojobs', 'indeed'],
     'consultor de selección': ['linkedin'],
     'técnico de formación': ['linkedin'],
   },
+  // Sin créditos. Eduso no: casi todo pide el título de Educación Social (prueba de noviembre de 2026: 0 de 276)
+  listings: ['hacesfalta_madrid'],
   requiredTerms: [],
   locationTerms: ['Madrid', 'online', 'remoto', 'teletrabajo'],
   excludedTitleTerms: ['psiquiatra', 'prácticas', 'becario', 'becaria'],
@@ -184,8 +185,15 @@ const MARILYN: SearchProfile = {
         label: 'Sexología',
         pattern: 'sexolog|afectivo|educacion sexual|educador.{0,3} sexual|salud sexual|terapia sexual|\\bvih\\b|\\bits\\b',
         points: 5,
+        // En la descripción de Eduso: educadores o técnicos que dan "educación afectivo-sexual" sin decirlo en el título
+        alsoDescription: true,
       },
-      { label: 'LGTBI / diversidad', pattern: 'lgtb|lgbt|diversidad', points: 3 },
+      // "Diversidad funcional" es discapacidad: solo cuenta la sexual o de género
+      {
+        label: 'LGTBI / diversidad',
+        pattern: 'lgtb|lgbt|diversidad sexual|diversidad afectivo|diversidad de genero|identidad de genero|\\btrans\\b',
+        points: 3,
+      },
       { label: 'Igualdad / violencia', pattern: 'violencia|igualdad|\\bvg\\b|victima|mujer', points: 3 },
       { label: 'Pareja', pattern: 'pareja', points: 2 },
       { label: 'Selección / RRHH', pattern: 'seleccion|recruit|rrhh|recursos humanos|talent', points: 2 },
@@ -194,9 +202,26 @@ const MARILYN: SearchProfile = {
       { label: '', pattern: 'juventud|joven|taller|formador|docente|psicolog', points: 1 },
       // Sin homologar no puede colegiarse: lo sanitario, clínico o forense no es para ella
       { label: 'Pide colegiación', pattern: 'sanitari|\\bpgs\\b|clinic|forense|colegiad|psicoterapeut|\\bpir\\b', points: -4 },
+      // En la descripción solo frases inequívocas: "sanitari" casaría con "ámbito sociosanitario"
+      {
+        label: 'Pide colegiación',
+        pattern: 'colegiad|colegiacion|\\bpgs\\b|general sanitari|habilitacion sanitaria|habilitacion profesional',
+        points: -4,
+        alsoDescription: true,
+      },
+      // Eduso dice los estudios mínimos: muchas plazas son para quien tiene el título de Educación o Trabajo Social
+      {
+        label: 'Pide otra titulación',
+        pattern:
+          'estudios minimos:[^.]*(educador.{0,3} social|educacion social|trabajo social|trabajador.{0,3} social|integracion social|magisterio|enfermer|terapia ocupacional)',
+        points: -3,
+        alsoDescription: true,
+      },
       {
         label: 'Otra profesión',
-        pattern: 'tienda|encargad|integrador|auxiliar|enfermer|abogad|monitor|cuidador|limpieza|ingenier|comercial|teleoperador|frigorista|calibracion|\\bprl\\b',
+        // "en derecho\b": la carrera de Derecho, no "derechos humanos"
+        pattern:
+          'tienda|encargad|integrador|auxiliar|enfermer|abogad|en derecho\\b|monitor|cuidador|limpieza|ingenier|comercial|teleoperador|frigorista|calibracion|\\bprl\\b|terapeuta ocupacional|nomina',
         points: -3,
       },
     ],
@@ -351,7 +376,7 @@ const MARKETING: SearchProfile = {
 export const PROFILES: readonly SearchProfile[] = [DESARROLLO, INTERNACIONAL, MARILYN, TRABAJO_SOCIAL, MARKETING];
 
 export interface Search {
-  readonly portal: PortalId;
+  readonly portal: SearchPortalId;
   readonly keyword: string;
 }
 

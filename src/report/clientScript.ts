@@ -4,7 +4,7 @@ export const CLIENT_SCRIPT = /* js */ `
 (function () {
   var VIEWS = [['pendientes', 'Pendientes'], ['aplicada', 'Aplicadas'], ['descartada', 'Descartadas'], ['todas', 'Todas']];
   // Solo se enlaza a fichas de los portales conocidos (nunca javascript: ni otros dominios)
-  var ALLOWED_LINK = /^https:\\/\\/(www\\.linkedin\\.com\\/jobs\\/view\\/|www\\.infojobs\\.net\\/|es\\.indeed\\.com\\/viewjob\\?jk=|www\\.tecnoempleo\\.com\\/|www\\.hacesfalta\\.org\\/oportunidades\\/)/;
+  var ALLOWED_LINK = /^https:\\/\\/(www\\.linkedin\\.com\\/jobs\\/view\\/|www\\.infojobs\\.net\\/|es\\.indeed\\.com\\/viewjob\\?jk=|www\\.tecnoempleo\\.com\\/|www\\.hacesfalta\\.org\\/oportunidades\\/|www\\.eduso\\.net\\/\\?p=\\d+$)/;
   var TOAST_MS = 5000;
 
   var offers = JSON.parse(document.getElementById('offers-data').textContent);
@@ -106,6 +106,21 @@ export const CLIENT_SCRIPT = /* js */ `
     return days > OLD_DAYS ? { text: text + ' · puede estar cerrada', old: true } : { text: text, old: false };
   }
 
+  // "2026-11-30" → "Plazo hasta el 30 nov"; en los últimos días se avisa (las vencidas no se guardan, pero pueden caducar
+  // mientras la página sigue abierta o entre una búsqueda y otra)
+  var DEADLINE_WARN_DAYS = 3;
+  function deadlineLabel(isoDay) {
+    var match = /^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(isoDay || '');
+    if (!match) return null;
+    var deadline = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    var today = new Date();
+    var days = Math.round((deadline - new Date(today.getFullYear(), today.getMonth(), today.getDate())) / 864e5);
+    if (days < 0) return { text: 'Plazo cerrado el ' + shortDate.format(deadline), warn: true };
+    if (days === 0) return { text: 'Último día para inscribirse', warn: true };
+    if (days <= DEADLINE_WARN_DAYS) return { text: 'Quedan ' + days + (days === 1 ? ' día' : ' días') + ' de plazo', warn: true };
+    return { text: 'Plazo hasta el ' + shortDate.format(deadline), warn: false };
+  }
+
   // ---- Render ----
   function renderStats() {
     var fresh = offers.filter(function (o) { return o.fechaGuardado === latestRun && !statusOf(o.id); }).length;
@@ -196,6 +211,8 @@ export const CLIENT_SCRIPT = /* js */ `
     info.append(el('span', 'company', o.empresa), el('span', 'loc', o.ubicacion));
     var published = publishedLabel(o.fechaPublicacion);
     if (published) info.append(el('span', 'published' + (published.old ? ' old' : ''), published.text));
+    var deadline = deadlineLabel(o.fechaLimite);
+    if (deadline) info.append(el('span', 'deadline' + (deadline.warn ? ' old' : ''), deadline.text));
     info.append(el('span', 'ext', (o.portalNombre || 'Ver oferta') + ' ↗'));
     a.append(title, info);
 

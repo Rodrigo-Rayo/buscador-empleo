@@ -114,6 +114,22 @@ describe('loadOffers / saveOffers', () => {
     expect(bad).not.toHaveProperty('fechaPublicacion');
   });
 
+  it('conserva el plazo y la descripción de las ofertas de listados, y descarta los que vienen mal', async () => {
+    const file = await tempFile();
+    const base = { ...job('1'), portal: 'eduso', fechaGuardado: NOW.toISOString() };
+    await writeFile(
+      file,
+      JSON.stringify([
+        { ...base, fechaLimite: '2026-12-05', descripcion: 'Talleres' },
+        { ...base, id: '2', fechaLimite: '5/12/2026', descripcion: 42 },
+      ]),
+    );
+    const [ok, bad] = await loadOffers(file);
+    expect(ok).toMatchObject({ portal: 'eduso', fechaLimite: '2026-12-05', descripcion: 'Talleres' });
+    expect(bad).not.toHaveProperty('fechaLimite');
+    expect(bad).not.toHaveProperty('descripcion');
+  });
+
   it('lanza error con JSON corrupto en lugar de sobrescribirlo', async () => {
     const file = await tempFile();
     await writeFile(file, '{roto');

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { PROFILES } from '../src/profiles';
-import { scoreTitle } from '../src/relevance';
+import { scoreOffer, scoreTitle } from '../src/relevance';
 
 const rules = (id: string) => PROFILES.find((p) => p.id === id)!.page.scoring;
 const dev = (titulo: string) => scoreTitle(titulo, rules('desarrollo'));
@@ -109,6 +109,38 @@ describe('scoreTitle (Amy: marketing)', () => {
   });
 });
 
+describe('scoreOffer (con descripción)', () => {
+  const marilyn = rules('marilyn');
+
+  it('solo las reglas marcadas miran la descripción (la "igualdad de oportunidades" de cualquier oferta no suma)', () => {
+    const match = scoreOffer(
+      { titulo: 'Técnico/a de proyecto', descripcion: 'Talleres de educación afectivo-sexual. Igualdad de oportunidades.' },
+      marilyn,
+    );
+    expect(match.etiquetas.map((t) => t.label)).toEqual(['Sexología']);
+  });
+
+  it('la colegiación en la descripción penaliza, pero "sociosanitario" no', () => {
+    expect(scoreOffer({ titulo: 'Educador/a sexual', descripcion: 'Colegiación obligatoria' }, marilyn).encaje).toBe(1);
+    expect(scoreOffer({ titulo: 'Educador/a sexual', descripcion: 'Recurso del ámbito sociosanitario' }, marilyn).encaje).toBe(5);
+  });
+
+  it('penaliza que pida otra titulación en los estudios mínimos', () => {
+    const match = scoreOffer({ titulo: 'Educador/a sexual', descripcion: 'Estudios mínimos: Grado en Trabajo Social' }, marilyn);
+    expect(match.encaje).toBe(2);
+    expect(match.etiquetas).toContainEqual({ label: 'Pide otra titulación', tone: 'warn' });
+  });
+
+  it('una etiqueta no se repite aunque casen dos reglas con el mismo nombre', () => {
+    const match = scoreOffer({ titulo: 'Psicóloga sanitaria', descripcion: 'Imprescindible estar colegiada' }, marilyn);
+    expect(match.etiquetas.filter((t) => t.label === 'Pide colegiación')).toHaveLength(1);
+  });
+
+  it('sin descripción equivale a puntuar el título', () => {
+    expect(scoreOffer({ titulo: 'Sexólogo/a' }, marilyn)).toEqual(scoreTitle('Sexólogo/a', marilyn));
+  });
+});
+
 describe('scoreTitle (Marilyn: sexología)', () => {
   const marilyn = (titulo: string) => scoreTitle(titulo, rules('marilyn')).encaje;
 
@@ -119,6 +151,9 @@ describe('scoreTitle (Marilyn: sexología)', () => {
     ['Educador/a sexual y en igualdad', 8],
     ['Técnico/a de salud y VIH', 5],
     ['Técnico/a de intervención social asociación lgtbiq+', 3],
+    ['Preparador/a laboral en centro de diversidad funcional', 0],
+    ['Titulada/o en derecho para espacio de igualdad', 0],
+    ['Técnico/a de derechos humanos e igualdad', 3],
     ['Técnica de Prevención de violencia de género y educación para la igualdad', 3],
     ['Técnico/a de Selección (Junior)', 2],
     ['Técnico de formación (H/M/X) - Fundae', 2],

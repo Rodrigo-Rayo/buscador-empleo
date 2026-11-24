@@ -1,9 +1,9 @@
 import { promises as fs } from 'node:fs';
 import { PROFILES, SearchProfile } from './profiles';
-import { scoreTitle } from './relevance';
+import { scoreOffer } from './relevance';
 import { CLIENT_SCRIPT } from './report/clientScript';
 import { STYLES } from './report/styles';
-import { SOURCES } from './sources';
+import { PORTAL_NAMES } from './sources';
 import type { JobOffer } from './storage';
 
 const FONTS_URL =
@@ -25,11 +25,18 @@ function embedJson(data: unknown): string {
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }
 
-/** Ofertas más recientes primero, con su encaje y el nombre del portal (se calculan al generar, no se guardan). */
+/**
+ * Ofertas más recientes primero, con su encaje y el nombre del portal (se calculan al generar, no se guardan).
+ * La descripción solo sirve para puntuar: no se incrusta en la página.
+ */
 function prepareOffers(offers: readonly JobOffer[], profile: SearchProfile) {
   return [...offers]
     .sort((a, b) => b.fechaGuardado.localeCompare(a.fechaGuardado))
-    .map((offer) => ({ ...offer, portalNombre: SOURCES[offer.portal].nombre, ...scoreTitle(offer.titulo, profile.page.scoring) }));
+    .map(({ descripcion, ...offer }) => ({
+      ...offer,
+      portalNombre: PORTAL_NAMES[offer.portal],
+      ...scoreOffer({ titulo: offer.titulo, descripcion }, profile.page.scoring),
+    }));
 }
 
 /** Barra con las páginas de todas las personas (son archivos hermanos en la misma carpeta). */

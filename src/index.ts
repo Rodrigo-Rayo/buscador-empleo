@@ -9,10 +9,15 @@ import { parsePublishedDate } from './publishedDate';
 import { buildQuery } from './queryBuilder';
 import { StatsFile, TaskOutcome, accumulate, loadStats, saveStats, summarizeRun } from './searchStats';
 import { FatalSearchError, createHttpClient, searchPage } from './serperSearch';
-import { JobSource, ParsedJob, SOURCES } from './sources';
+import { selectListingJobs } from './listingFilter';
+import { LISTINGS, httpPageGetter } from './listings';
+import { JobSource, PORTAL_NAMES, ParsedJob, SOURCES } from './sources';
+import { loadSeen, markSeen, saveSeen } from './seenStore';
 import { JobOffer, loadOffers, mergeOffers, saveOffers } from './storage';
 
 const STATS_FILE = 'estadisticas.json';
+// Ofertas de los listados ya revisadas (encajen o no): lo sube a GitHub la búsqueda automática
+const SEEN_FILE = 'vistos.json';
 
 interface CollectResult {
   readonly jobs: readonly ParsedJob[];
@@ -94,6 +99,35 @@ async function collectJobs(context: SearchContext): Promise<CollectResult> {
   return { jobs, outcomes, aborted };
 }
 
+const LISTING_KEYWORD = 'listado';
+
+/**
+ * Lee los listados del perfil (sin créditos) y se queda con lo que encaja. Si una web falla se avisa y se sigue:
+ * no debe tumbar la búsqueda en Google.
+ */
+async function collectListings(profile: SearchProfile, existing: readonly JobOffer[]): Promise<Omit<CollectResult, 'aborted'>> {
+  const jobs: ParsedJob[] = [];
+  const outcomes: TaskOutcome[] = [];
+  let seen = await loadSeen(SEEN_FILE);
+  for (const id of profile.listings ?? []) {
+    const listing = LISTINGS[id];
+    try {
+      // Conocidas: las guardadas y las revisadas antes aunque no encajaran (no se vuelve a abrir su ficha)
+      const knownIds = new Set([...existing.map((offer) => offer.id), ...Object.keys(seen[id] ?? {})]);
+      const { jobs: read, seenIds } = await listing.fetchJobs(httpPageGetter, { knownIds });
+      const selected = selectListingJobs(read, profile, new Date());
+      console.log(`  · ${listing.nombre}: ${selected.length} que encajan de ${read.length} revisadas`);
+      jobs.push(...selected);
+      outcomes.push({ portal: id, keyword: LISTING_KEYWORD, jobIds: selected.map((job) => job.id) });
+      seen = markSeen(seen, id, seenIds, new Date());
+    } catch (error) {
+      console.warn(`⚠ No se ha podido leer ${listing.nombre}: ${(error as Error).message}`);
+    }
+  }
+  await saveSeen(SEEN_FILE, seen);
+  return { jobs, outcomes };
+}
+
 function newestSaved(offers: readonly JobOffer[]): Date | null {
   const newest = offers.reduce<string>((max, offer) => (offer.fechaGuardado > max ? offer.fechaGuardado : max), '');
   return newest ? new Date(newest) : null;
@@ -115,14 +149,18 @@ async function runProfile(client: AxiosInstance, config: AppConfig, profile: Sea
   const searches = searchesFor(profile).length;
   console.log(`\n🔎 [${profile.id}] ${searches} búsquedas en ${profile.portals.length} portales (${window}), ${existing.length} guardadas...`);
 
-  const { jobs, outcomes, aborted } = await collectJobs({ client, config, profile, dateRestrict });
+  const searched = await collectJobs({ client, config, profile, dateRestrict });
+  const listed = await collectListings(profile, existing);
+  const jobs = [...searched.jobs, ...listed.jobs];
+  const outcomes = [...searched.outcomes, ...listed.outcomes];
+  const { aborted } = searched;
   const { offers, added } = mergeOffers(existing, jobs, new Date());
   await saveOffers(profile.outputFile, offers);
   await writeReport(profile.reportFile, offers, profile);
   await recordStats(profile, outcomes, added);
 
   console.log(`✔ [${profile.id}] ${added.length} ofertas nuevas (${jobs.length - added.length} ya vistas). Total: ${offers.length}.`);
-  added.forEach((offer) => console.log(`  + [${SOURCES[offer.portal].nombre}] ${offer.titulo} — ${offer.empresa} (${offer.ubicacion})`));
+  added.forEach((offer) => console.log(`  + [${PORTAL_NAMES[offer.portal]}] ${offer.titulo} — ${offer.empresa} (${offer.ubicacion})`));
   return aborted;
 }
 

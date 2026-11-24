@@ -80,9 +80,10 @@ ol.jobs { list-style: none; margin: 0; padding: 0; }
 .title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; line-height: 1.2; letter-spacing: -.01em; overflow-wrap: anywhere; }
 .meta { display: flex; gap: 4px 14px; flex-wrap: wrap; color: var(--ink-soft); font-size: 12.5px; margin-top: 4px; }
 .meta .company { color: var(--ink); font-weight: 500; }
-.meta .loc::before, .meta .ext::before, .meta .published::before { content: '◦ '; color: var(--ink-faint); }
+.meta .loc::before, .meta .ext::before, .meta .published::before, .meta .deadline::before { content: '◦ '; color: var(--ink-faint); }
 .meta .published { color: var(--ink); }
-.meta .published.old { color: var(--warn); }
+.meta .published.old, .meta .deadline.old { color: var(--warn); }
+.meta .deadline { color: var(--ink); font-weight: 500; }
 .meta .ext { color: var(--ink-faint); }
 .tag { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; border: 1px solid currentColor;
   padding: 1px 6px; border-radius: 2px; margin-left: 10px; vertical-align: 4px; font-family: var(--mono); white-space: nowrap; }
