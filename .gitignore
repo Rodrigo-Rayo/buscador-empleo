@@ -12,3 +12,6 @@ estadisticas.json.tmp
 # Las ofertas de las páginas publicadas sí se suben: la búsqueda automática (GitHub Actions) las necesita entre ejecuciones
 !ofertas-gabi.json
 !ofertas-amy.json
+!ofertas-marilyn.json
+# Ajustes locales de Claude Code (permisos): no se publican
+.claude/

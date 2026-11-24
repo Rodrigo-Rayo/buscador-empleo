@@ -2,6 +2,7 @@
 # página de cada persona en GitHub Pages (las pausadas siguen en línea con sus últimas ofertas):
 #   Gabi → https://rodrigo-rayo.github.io/buscador-empleo/
 #   Amy  → https://rodrigo-rayo.github.io/buscador-empleo/amy/
+#   Marilyn → https://rodrigo-rayo.github.io/buscador-empleo/marilyn/
 # Lunes, miércoles y viernes; el cron va en UTC y GitHub suele retrasarlo varias horas.
 # También se puede lanzar a mano: pestaña Actions > "Buscar ofertas" > Run workflow.
 name: Buscar ofertas
@@ -59,15 +60,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ofertas-gabi.json ofertas-amy.json estadisticas.json
+          git add ofertas-gabi.json ofertas-amy.json ofertas-marilyn.json estadisticas.json
           git diff --cached --quiet || git commit -m "chore: ofertas del $(date +%F)"
           git push
 
       - name: Preparar las páginas
         run: |
-          mkdir -p _site/amy
+          mkdir -p _site/amy _site/marilyn
           cp ofertas-gabi.html _site/index.html
           cp ofertas-amy.html _site/amy/index.html
+          cp ofertas-marilyn.html _site/marilyn/index.html
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

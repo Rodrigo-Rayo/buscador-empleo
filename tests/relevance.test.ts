@@ -109,19 +109,27 @@ describe('scoreTitle (Amy: marketing)', () => {
   });
 });
 
-describe('scoreTitle (perfil psicología)', () => {
-  it('las ofertas de psicología suben por encima del ruido de otras profesiones, sin etiqueta propia', () => {
-    const psico = scoreTitle('Psicólogo/a infantojuvenil', rules('psicologia'));
-    expect(psico.encaje).toBeGreaterThan(scoreTitle('Abogado/a fiscal', rules('psicologia')).encaje);
-    expect(psico.etiquetas).toEqual([]);
-  });
+describe('scoreTitle (Marilyn: sexología)', () => {
+  const marilyn = (titulo: string) => scoreTitle(titulo, rules('marilyn')).encaje;
 
-  it('ignora acentos al comparar', () => {
-    expect(scoreTitle('Psicóloga para víctimas de violencia sexual', rules('psicologia')).encaje).toBe(6);
-  });
+  // Títulos reales de ofertas vistas en la prueba de noviembre de 2026 y en el informe de fuentes
+  it.each([
+    ['Sexólogo/a', 5],
+    ['Mediador/a afectivo sexual', 5],
+    ['Educador/a sexual y en igualdad', 8],
+    ['Técnico/a de salud y VIH', 5],
+    ['Técnico/a de intervención social asociación lgtbiq+', 3],
+    ['Técnica de Prevención de violencia de género y educación para la igualdad', 3],
+    ['Técnico/a de Selección (Junior)', 2],
+    ['Técnico de formación (H/M/X) - Fundae', 2],
+    ['Psicólogo/a infantojuvenil', 1],
+    ['Psicóloga sanitaria terapia de pareja', -1],
+    ['Psicólogo/a forense especializado/a en violencia sexual', 0],
+    ['TÉCNICO/A DE CALIBRACIONES JUNIOR', -3],
+    ['Integrador/a social (suplencia)', -3],
+  ])('%s → %i', (titulo, encaje) => expect(marilyn(titulo)).toBe(encaje));
 
-  it('penaliza lo que exige habilitación sanitaria u otra profesión', () => {
-    expect(scoreTitle('Psicóloga sanitaria adultos', rules('psicologia')).encaje).toBe(-1);
-    expect(scoreTitle('Integrador/a social (suplencia)', rules('psicologia')).encaje).toBe(-3);
+  it('la psicología genérica sube un poco, sin etiqueta propia', () => {
+    expect(scoreTitle('Psicólogo/a infantojuvenil', rules('marilyn')).etiquetas).toEqual([]);
   });
 });

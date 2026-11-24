@@ -178,15 +178,18 @@ describe('página de ofertas', () => {
     expect(titles()).toEqual(['Trabajador/a social', 'Logopeda']);
   });
 
-  it('perfil de psicología: etiqueta las ofertas según el título', () => {
-    const { row } = openPage({
-      profile: 'psicologia',
+  it('perfil de Marilyn: etiqueta las ofertas según el título', () => {
+    const { row, doc, dom } = openPage({
+      profile: 'marilyn',
       offers: [offer('6', 'Psicóloga sanitaria terapia de pareja', 'Madrid'), offer('7', 'Psicólogo/a en Neural KIDS', 'Madrid')],
     });
+    const checkbox = doc.getElementById('only-match') as HTMLInputElement;
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new dom.window.Event('change'));
     const tagsOf = (titulo: string) => [...row(titulo).querySelectorAll('.tag:not(.new)')].map((t) => [t.className, t.textContent]);
     expect(tagsOf('Psicóloga sanitaria terapia de pareja')).toEqual([
-      ['tag good', 'Sexología / pareja'],
-      ['tag warn', 'Pide sanitaria'],
+      ['tag good', 'Pareja'],
+      ['tag warn', 'Pide colegiación'],
     ]);
     expect(tagsOf('Psicólogo/a en Neural KIDS')).toEqual([]);
   });
@@ -215,7 +218,7 @@ describe('página de ofertas', () => {
   });
 
   it('sin barra en una página local si no hay otra activa sin publicar', () => {
-    const { doc } = openPage({ profile: 'psicologia' });
+    const { doc } = openPage({ profile: 'desarrollo' });
     expect(doc.querySelector('nav.people')).toBeNull();
   });
 

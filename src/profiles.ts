@@ -119,44 +119,86 @@ const INTERNACIONAL: SearchProfile = {
   },
 };
 
-const PSICOLOGIA: SearchProfile = {
-  id: 'psicologia',
-  paused: true,
-  // "educación sexual" se descartó: en LinkedIn solo devuelve ofertas no relacionadas
+// Marilyn: Grado en Psicología (Ecuador, sin homologar: no puede colegiarse) y Máster en Sexología, Educación Sexual y
+// Asesoría Sexológica (UCJC). Experiencia de sexóloga y educadora sexual (Madrid Salud, asociación Deslenguando, ESPACIO,
+// donde coordina talleres y forma a formadoras) y en selección, formación y clima laboral; ahora en Eurofirms.
+// Prioridad: sexología; además, puestos puente con jornada completa (igualdad, violencia, selección, formación).
+// La sexología no es profesión regulada: puede hacer educación sexual, talleres y asesoramiento no clínico, pero no
+// terapia clínica ni puestos que pidan colegiación o habilitación sanitaria (PGS).
+// Prueba de noviembre de 2026 (un mes, 4 portales): casi no hay ofertas con "sexóloga" en el título (0 en InfoJobs en toda
+// España), y "sexual" o "sexualidad" a secas traen ruido ("sin discriminación por orientación sexual" en cualquier oferta).
+// Descartadas por no traer nada: "sexóloga", "afectivo-sexual", "educación sexual", "educador sexual", "técnico de
+// intervención social", "técnico de juventud", "talleres". Sustituye al antiguo perfil "psicologia"
+const MARILYN: SearchProfile = {
+  id: 'marilyn',
+  paused: false,
+  published: true,
   keywords: [
-    'psicólogo',
-    'psicóloga',
+    'sexólogo',
     'sexología',
-    'sexualidad',
     'terapia sexual',
-    'terapia de pareja',
+    'salud sexual',
+    'VIH',
+    'LGTBI',
     'violencia sexual',
     'violencia de género',
+    'agente de igualdad',
+    'psicólogo',
+    'técnico de selección',
+    'consultor de selección',
+    'técnico de formación',
   ],
-  // Tecnoempleo no: solo publica ofertas de informática (las que mencionan "psicólogo" lo hacen en los beneficios)
+  // Tecnoempleo no: solo publica ofertas de informática
   portals: ['linkedin', 'infojobs', 'indeed', 'hacesfalta'],
+  keywordPortals: {
+    'sexólogo': ['linkedin'],
+    'sexología': ['linkedin', 'hacesfalta'],
+    'terapia sexual': ['linkedin'],
+    'salud sexual': ['linkedin'],
+    VIH: ['hacesfalta'],
+    LGTBI: ['hacesfalta'],
+    'violencia sexual': ['linkedin', 'hacesfalta'],
+    'agente de igualdad': ['linkedin'],
+    'psicólogo': ['linkedin', 'indeed', 'hacesfalta'],
+    'técnico de selección': ['linkedin', 'infojobs', 'indeed'],
+    'consultor de selección': ['linkedin'],
+    'técnico de formación': ['linkedin'],
+  },
   requiredTerms: [],
   locationTerms: ['Madrid', 'online', 'remoto', 'teletrabajo'],
-  excludedTitleTerms: ['psiquiatra'],
-  // Hay pocas ofertas del sector: se amplía la ventana a un mes
+  excludedTitleTerms: ['psiquiatra', 'prácticas', 'becario', 'becaria'],
+  // Hay muy pocas ofertas del sector: ventana de un mes
   dateRestrict: 'm1',
-  outputFile: 'ofertas-psicologia.json',
-  reportFile: 'ofertas-psicologia.html',
+  outputFile: 'ofertas-marilyn.json',
+  reportFile: 'ofertas-marilyn.html',
   page: {
-    navLabel: 'Psicología',
-    documentTitle: 'Ofertas de psicología y sexología',
-    kicker: ['Buscador de empleo', 'Madrid · Online'],
+    navLabel: 'Marilyn · Sexología',
+    documentTitle: 'Ofertas para Marilyn',
+    kicker: ['Buscador de empleo · Marilyn', 'Madrid · Online'],
     heading: 'Ofertas',
-    emphasis: 'psicología & sexología',
-    matchLabel: 'Solo sexología / violencia',
+    emphasis: 'sexología · igualdad · selección',
+    matchLabel: 'Solo las que encajan con su perfil',
+    onlyMatchByDefault: true,
     scoring: [
-      { label: 'Sexología / pareja', pattern: 'sexolog|sexual|pareja', points: 3 },
-      { label: 'Violencia de género', pattern: 'violencia|pmorvg|victima', points: 2 },
-      // Sin etiqueta: solo sube las de psicología por encima del ruido de otras profesiones
-      { label: '', pattern: 'psicolog', points: 1 },
-      // Sin el Máster en Psicología General Sanitaria no se puede ejercer terapia clínica
-      { label: 'Pide sanitaria', pattern: 'sanitari', points: -2 },
-      { label: 'Otra profesión', pattern: 'tienda|encargad|trabajador.{0,3} social|integrador|educador', points: -3 },
+      {
+        label: 'Sexología',
+        pattern: 'sexolog|afectivo|educacion sexual|educador.{0,3} sexual|salud sexual|terapia sexual|\\bvih\\b|\\bits\\b',
+        points: 5,
+      },
+      { label: 'LGTBI / diversidad', pattern: 'lgtb|lgbt|diversidad', points: 3 },
+      { label: 'Igualdad / violencia', pattern: 'violencia|igualdad|\\bvg\\b|victima|mujer', points: 3 },
+      { label: 'Pareja', pattern: 'pareja', points: 2 },
+      { label: 'Selección / RRHH', pattern: 'seleccion|recruit|rrhh|recursos humanos|talent', points: 2 },
+      // Sus CV: formación de formadoras, talleres y formación en igualdad y diversidad en empresas
+      { label: 'Formación', pattern: 'tecnic[oa].{0,4} de formacion|formador|formacion de formador', points: 2 },
+      { label: '', pattern: 'juventud|joven|taller|formador|docente|psicolog', points: 1 },
+      // Sin homologar no puede colegiarse: lo sanitario, clínico o forense no es para ella
+      { label: 'Pide colegiación', pattern: 'sanitari|\\bpgs\\b|clinic|forense|colegiad|psicoterapeut|\\bpir\\b', points: -4 },
+      {
+        label: 'Otra profesión',
+        pattern: 'tienda|encargad|integrador|auxiliar|enfermer|abogad|monitor|cuidador|limpieza|ingenier|comercial|teleoperador|frigorista|calibracion|\\bprl\\b',
+        points: -3,
+      },
     ],
   },
 };
@@ -306,7 +348,7 @@ const MARKETING: SearchProfile = {
   },
 };
 
-export const PROFILES: readonly SearchProfile[] = [DESARROLLO, INTERNACIONAL, PSICOLOGIA, TRABAJO_SOCIAL, MARKETING];
+export const PROFILES: readonly SearchProfile[] = [DESARROLLO, INTERNACIONAL, MARILYN, TRABAJO_SOCIAL, MARKETING];
 
 export interface Search {
   readonly portal: PortalId;

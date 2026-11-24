@@ -836,5 +836,133 @@
       "exclusivas": 14,
       "nuevas": 9
     }
+  },
+  "marilyn": {
+    "linkedin | sexólogo": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 2,
+      "nuevas": 3
+    },
+    "linkedin | sexología": {
+      "busquedas": 1,
+      "resultados": 2,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "hacesfalta | sexología": {
+      "busquedas": 1,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "linkedin | terapia sexual": {
+      "busquedas": 1,
+      "resultados": 2,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "linkedin | salud sexual": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "hacesfalta | VIH": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "hacesfalta | LGTBI": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "linkedin | violencia sexual": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 0,
+      "nuevas": 3
+    },
+    "hacesfalta | violencia sexual": {
+      "busquedas": 1,
+      "resultados": 0,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "linkedin | violencia de género": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 0,
+      "nuevas": 0
+    },
+    "infojobs | violencia de género": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "indeed | violencia de género": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "hacesfalta | violencia de género": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "linkedin | agente de igualdad": {
+      "busquedas": 1,
+      "resultados": 2,
+      "exclusivas": 2,
+      "nuevas": 2
+    },
+    "linkedin | psicólogo": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 2,
+      "nuevas": 2
+    },
+    "indeed | psicólogo": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 3,
+      "nuevas": 3
+    },
+    "hacesfalta | psicólogo": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 3,
+      "nuevas": 3
+    },
+    "linkedin | técnico de selección": {
+      "busquedas": 1,
+      "resultados": 2,
+      "exclusivas": 2,
+      "nuevas": 2
+    },
+    "infojobs | técnico de selección": {
+      "busquedas": 1,
+      "resultados": 1,
+      "exclusivas": 1,
+      "nuevas": 1
+    },
+    "indeed | técnico de selección": {
+      "busquedas": 1,
+      "resultados": 2,
+      "exclusivas": 2,
+      "nuevas": 2
+    },
+    "linkedin | consultor de selección": {
+      "busquedas": 1,
+      "resultados": 3,
+      "exclusivas": 3,
+      "nuevas": 3
+    }
   }
 }

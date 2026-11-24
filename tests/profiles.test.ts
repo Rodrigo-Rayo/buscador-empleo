@@ -85,16 +85,16 @@ describe('selectProfiles', () => {
   });
 
   it('un perfil pausado se puede lanzar pidiéndolo explícitamente', () => {
-    expect(selectProfiles(['psicologia'], { activeOnly: true }).map((p) => p.id)).toEqual(['psicologia']);
+    expect(selectProfiles(['gabi'], { activeOnly: true }).map((p) => p.id)).toEqual(['gabi']);
   });
 
   it('filtra por ID', () => {
-    expect(selectProfiles(['psicologia']).map((p) => p.id)).toEqual(['psicologia']);
+    expect(selectProfiles(['marilyn']).map((p) => p.id)).toEqual(['marilyn']);
   });
 
   it('falla con un perfil desconocido y lista los válidos', () => {
     expect(() => selectProfiles(['cocina'])).toThrow(
-      'Perfil desconocido: cocina. Perfiles disponibles: desarrollo, internacional, psicologia, gabi, amy.',
+      'Perfil desconocido: cocina. Perfiles disponibles: desarrollo, internacional, marilyn, gabi, amy.',
     );
   });
 });
