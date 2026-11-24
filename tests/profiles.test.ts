@@ -78,8 +78,10 @@ describe('selectProfiles', () => {
     expect(selectProfiles([])).toBe(PROFILES);
   });
 
-  it('activeOnly: sin argumentos salta los pausados (quedan gabi y amy)', () => {
-    expect(selectProfiles([], { activeOnly: true }).map((p) => p.id)).toEqual(['gabi', 'amy']);
+  it('activeOnly: sin argumentos salta los pausados', () => {
+    const active = selectProfiles([], { activeOnly: true });
+    expect(active.every((p) => !p.paused)).toBe(true);
+    expect(active).toEqual(PROFILES.filter((p) => !p.paused));
   });
 
   it('un perfil pausado se puede lanzar pidiéndolo explícitamente', () => {

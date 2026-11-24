@@ -167,7 +167,7 @@ const PSICOLOGIA: SearchProfile = {
 // Descartadas por traer solo ruido: "agente/técnica/técnico de igualdad", "técnico de empleo", "proyectos sociales"
 const TRABAJO_SOCIAL: SearchProfile = {
   id: 'gabi',
-  paused: false,
+  paused: true,
   published: true,
   keywords: [
     'trabajador social',
@@ -236,7 +236,7 @@ const TRABAJO_SOCIAL: SearchProfile = {
 // "marketing y ventas", "e-commerce manager" (repetía lo de "ecommerce")
 const MARKETING: SearchProfile = {
   id: 'amy',
-  paused: false,
+  paused: true,
   published: true,
   keywords: [
     'coordinador de marketing',

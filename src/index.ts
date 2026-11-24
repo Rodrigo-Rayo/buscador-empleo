@@ -33,6 +33,8 @@ interface RunOptions {
 }
 
 const FULL_FLAG = '--completa';
+/** Solo los perfiles activos que tienen página publicada (lo usa GitHub Actions) */
+const PUBLISHED_FLAG = '--publicados';
 
 interface SearchTask {
   readonly source: JobSource;
@@ -130,7 +132,12 @@ async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const options: RunOptions = { full: args.includes(FULL_FLAG) };
   // Sin perfiles indicados solo los activos; si se indican, se lanzan aunque estén pausados
-  const profiles = selectProfiles(args.filter((arg) => !arg.startsWith('--')), { activeOnly: true });
+  const selected = selectProfiles(args.filter((arg) => !arg.startsWith('--')), { activeOnly: true });
+  const profiles = args.includes(PUBLISHED_FLAG) ? selected.filter((profile) => profile.published) : selected;
+  if (profiles.length === 0) {
+    console.log('No hay perfiles que buscar (todos pausados).');
+    return;
+  }
   const client = createHttpClient(config.apiKey);
   const startedAt = Date.now();
 

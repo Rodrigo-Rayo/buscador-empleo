@@ -1,8 +1,8 @@
-# Busca ofertas para Gabi y Amy y publica la página de cada una en GitHub Pages:
+# Busca ofertas para los perfiles publicados y activos (published y no paused en src/profiles.ts) y publica la
+# página de cada persona en GitHub Pages (las pausadas siguen en línea con sus últimas ofertas):
 #   Gabi → https://rodrigo-rayo.github.io/buscador-empleo/
 #   Amy  → https://rodrigo-rayo.github.io/buscador-empleo/amy/
-# Lunes, miércoles y viernes a las 7:00 de Madrid en horario de verano (6:00 en invierno: el cron va en UTC);
-# GitHub puede retrasarlo unos minutos. Unos 46 créditos de Serper por ejecución (27 Gabi + 19 Amy).
+# Lunes, miércoles y viernes; el cron va en UTC y GitHub suele retrasarlo varias horas.
 # También se puede lanzar a mano: pestaña Actions > "Buscar ofertas" > Run workflow.
 name: Buscar ofertas
 
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       buscar:
-        description: 'Buscar ofertas nuevas (gasta ~46 créditos). Desmarcado: solo regenera las páginas'
+        description: 'Buscar ofertas nuevas (gasta créditos de Serper). Desmarcado: solo regenera las páginas'
         type: boolean
         default: true
 
@@ -41,16 +41,18 @@ jobs:
 
       - run: npm ci
 
-      # Perfiles explícitos: si en local se reactiva otro, aquí no se busca ni se publica
+      - run: npm run build
+
+      # Solo perfiles con página publicada: si en local se reactiva otro (el de desarrollo...), aquí no se busca
       - name: Buscar ofertas nuevas
         if: github.event_name == 'schedule' || inputs.buscar
-        run: npm run build && node dist/index.js gabi amy
+        run: node dist/index.js --publicados
         env:
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
 
-      - name: Regenerar las páginas sin buscar
-        if: github.event_name == 'workflow_dispatch' && !inputs.buscar
-        run: npm run build && node dist/ver.js --sin-abrir
+      # Sin créditos: también regenera las páginas de los perfiles pausados
+      - name: Regenerar las páginas
+        run: node dist/ver.js --sin-abrir
 
       # Las ofertas guardadas se suben al repositorio: así la siguiente búsqueda sabe cuáles ya conoce
       - name: Guardar ofertas
